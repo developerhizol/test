@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KinoPlayer.Top - Агрегатор фильмов и сериалов</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a0a;
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Анимированный фон */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 25% 25%, #4CAF50 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, #00BCD4 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, #9C27B0 0%, transparent 50%);
+            filter: blur(120px);
+            opacity: 0.4;
+            animation: backgroundShift 12s ease-in-out infinite alternate;
+            z-index: -1;
+        }
+
+        @keyframes backgroundShift {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.1) rotate(8deg); }
+        }
+
+        /* Падающие частицы */
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+            border-radius: 50%;
+            animation: float 18s linear infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 1s; animation-duration: 16s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 3s; animation-duration: 17s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 5s; animation-duration: 15s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 7s; animation-duration: 16s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 9s; animation-duration: 18s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 11s; animation-duration: 17s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 13s; animation-duration: 15s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 15s; animation-duration: 16s; }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Контейнер для содержимого */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* Шапка */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #4CAF50, #00BCD4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 0 0 35px rgba(76, 175, 80, 0.6);
+        }
+
+        .header p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        /* Поиск */
+        .search-container {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 28px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .search-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #00BCD4;
+            text-align: center;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            background: rgba(30, 30, 30, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .search-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .search-btn {
+            flex: 1;
+            padding: 12px;
+            background: linear-gradient(135deg, #00BCD4, #4CAF50);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .clear-btn {
+            flex: 1;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .search-results {
+            width: 100%;
+            max-height: 300px;
+            overflow-y: auto;
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        .film-item {
+            display: flex;
+            gap: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .film-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .film-poster img {
+            width: 60px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .film-info {
+            flex: 1;
+        }
+
+        .film-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #00BCD4;
+        }
+
+        .film-year, .film-rating {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .selected-film {
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(0, 188, 212, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 188, 212, 0.3);
+            text-align: center;
+        }
+
+        .loading, .error, .no-results {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .results-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #4CAF50;
+        }
+
+        /* Топ фильмов */
+        .top-films {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 28px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .top-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #00BCD4;
+            text-align: center;
+        }
+
+        .films-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .top-film-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .top-film-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .top-film-poster {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .top-film-info {
+            padding: 15px;
+        }
+
+        .top-film-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .top-film-rating {
+            color: #4CAF50;
+            font-weight: 600;
+        }
+
+        /* Плеер */
+        .player-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .player-content {
+            background-color: #1a1a1a;
+            width: 90%;
+            max-width: 900px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .player-header {
+            padding: 15px 20px;
+            background: #252525;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .player-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #00BCD4;
+        }
+
+        .close-player {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .sources-container {
+            padding: 20px;
+            background: #1e1e1e;
+        }
+
+        .sources-title {
+            margin-bottom: 15px;
+            color: white;
+            font-size: 16px;
+        }
+
+        .sources-list {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .source-btn {
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .source-btn.active {
+            background: #00BCD4;
+        }
+
+        .source-btn:hover {
+            background: rgba(0, 188, 212, 0.7);
+        }
+
+        .player-iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+
+        /* Контейнер для CDNVideoHub */
+        .cdnvideohub-container {
+            width: 100%;
+            height: 500px;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        /* Футер */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .films-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .top-film-poster {
+                height: 220px;
+            }
+            
+            .player-iframe, .cdnvideohub-container {
+                height: 300px;
+            }
+            
+            .header h1 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .films-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            }
+            
+            .top-film-poster {
+                height: 190px;
+            }
+            
+            .search-container, .top-films {
+                padding: 20px;
+            }
+            
+            .sources-list {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Падающие частицы -->
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+
+<div class="container">
+    <!-- Шапка -->
+    <div class="header">
+        <h1>KinoPlayer.Top</h1>
+        <p>Все фильмы доступные для просмотра онлайн в одном месте</p>
+    </div>
+
+    <!-- Поиск -->
+    <div class="search-container">
+        <h2 class="search-title">Введите название фильма</h2>
+        <input type="text" id="searchInput" class="search-input" placeholder="Например: Папины дочки">
+        
+        <div class="search-buttons">
+            <button class="search-btn" onclick="searchContent()">Найти</button>
+            <button class="clear-btn" onclick="clearSearch()">Очистить</button>
+        </div>
+        
+        <div id="searchResults" class="search-results"></div>
+        
+        <div id="selectedFilm" class="selected-film"></div>
+    </div>
+         </div>
+        </div>
+    </div>
+
+    <!-- Плеер -->
+    <div id="playerModal" class="player-modal">
+        <div class="player-content">
+            <div class="player-header">
+                <div class="player-title" id="playerFilmTitle">Выберите источник для просмотра</div>
+                <button class="close-player" onclick="closePlayer()">×</button>
+            </div>
+            
+            <div class="sources-container">
+                <div class="sources-title">Доступные источники:</div>
+                <div class="sources-list">
+                    <button class="source-btn active" onclick="changeSource('source1')">Источник 1</button>
+                    <button class="source-btn" onclick="changeSource('source2')">Источник 2</button>
+                    <button class="source-btn" onclick="changeSource('source3')">Источник 3</button>
+                    <button class="source-btn" onclick="changeSource('source4')">Источник 4</button>
+                    <button class="source-btn" onclick="changeSource('source5')">Источник 5</button>
+                    <button class="source-btn" onclick="changeSource('source6')">Источник 6</button>
+                    <button class="source-btn" onclick="changeSource('source7')">Источник 7</button>
+                     <button class="source-btn" onclick="changeSource('source8')">Источник 8</button>
+                     <button class="source-btn" onclick="changeSource('source9')">Источник 9</button>
+                      <button class="source-btn" onclick="changeSource('source10')">Источник 10</button>
+                       <button class="source-btn" onclick="changeSource('source11')">Источник 11</button>
+                </div>
+                
+                <iframe id="playerIframe" class="player-iframe" src="" frameborder="0" allowfullscreen></iframe>
+                <div id="cdnvideohubContainer" class="cdnvideohub-container" style="display: none;">
+                    Плеер CDNVideoHub загружается...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <div class="footer">
+        KinoPlayer.Top - Агрегатор плееров
+    </div>
+</div>
+
+<script>
+    // Текущий выбранный фильм
+    let currentFilm = null;
+    let currentSource = 'source1';
+
+    // Базовая конфигурация источников
+    const sources = {
+        source1: "https://api1690380040.atomics.ws/embed/kp/",
+        source2: "//api.atomics.ws/embed/movie/", 
+        source3: "https://api.marts.ws/embed/movie/",
+        source4: "https://api.domem.ws/embed/movie/",
+        source5: "cdnvideohub", // Особый обработчик для CDNVideoHubsource4:
+		source6: "https://5414e3c9.obrut.show/embed/kDN?kinopoisk_id=",
+		source7: "https://api.embess.ws/embed/kp/",
+		source8: "https://www.kinopoisk.one/film/",
+		source9: "https://www.kinopoisk.cfd/film/",
+		source10: "https://www.kinopoisk.vip/film/",
+		source11: "https://api.namy.ws/embed/movie/"
+    };
+
+    // Функция для поиска фильмов/сериалов по названию
+    async function searchContent() {
+        const searchInput = document.getElementById("searchInput").value.trim();
+        const resultsContainer = document.getElementById("searchResults");
+        
+        if (!searchInput) {
+            alert("Пожалуйста, введите название фильма или сериала");
+            return;
+        }
+        
+        // Показываем индикатор загрузки
+        resultsContainer.innerHTML = '<div class="loading">Поиск...</div>';
+        
+        try {
+            const apiUrl = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${encodeURIComponent(searchInput)}&page=1`;
+            
+            const response = await fetch(apiUrl, {
+                headers: {
+                    'X-API-KEY': '960dc4e3-9eae-4072-8f0c-98a5ed6c0d2a',
+                    'Content-Type': 'application/json',
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error('Ошибка при поиске. Статус: ' + response.status);
+            }
+            
+            const data = await response.json();
+            displayResults(data.films);
+        } catch (error) {
+            console.error('Ошибка:', error);
+            resultsContainer.innerHTML = '<div class="error">Произошла ошибка при поиске. Попробуйте еще раз.</div>';
+        }
+    }
+
+    // Функция для отображения результатов поиска
+    function displayResults(films) {
+        const resultsContainer = document.getElementById("searchResults");
+        
+        if (!films || films.length === 0) {
+            resultsContainer.innerHTML = '<div class="no-results">Ничего не найдено</div>';
+            return;
+        }
+        
+        let html = '<div class="results-title">Результаты поиска:</div>';
+        
+        films.slice(0, 5).forEach(film => {
+            html += `
+                <div class="film-item" onclick="selectFilm(${film.filmId}, '${film.nameRu || film.nameEn}')">
+                    <div class="film-poster">
+                        <img src="${film.posterUrlPreview || 'https://via.placeholder.com/100x150'}" alt="${film.nameRu || film.nameEn}">
+                    </div>
+                    <div class="film-info">
+                        <div class="film-title">${film.nameRu || film.nameEn}</div>
+                        <div class="film-year">${film.year || 'Год неизвестен'}</div>
+                        <div class="film-rating">Рейтинг: ${film.rating || 'нет'}</div>
+                    </div>
+                </div>
+            `;
+        });
+        
+        resultsContainer.innerHTML = html;
+    }
+
+    // Функция для выбора фильма из результатов поиска
+    function selectFilm(filmId, filmTitle) {
+        currentFilm = { id: filmId, title: filmTitle };
+        document.getElementById("selectedFilm").innerHTML = `<strong>Выбран:</strong> ${filmTitle} (ID: ${filmId})`;
+        document.getElementById("searchResults").innerHTML = '';
+        document.getElementById("searchInput").value = '';
+        
+        // Автоматически открываем плеер при выборе фильма
+        openPlayer();
+    }
+
+    // Функция для очистки результатов поиска
+    function clearSearch() {
+        document.getElementById("searchResults").innerHTML = '';
+        document.getElementById("searchInput").value = '';
+        document.getElementById("selectedFilm").innerHTML = '';
+        currentFilm = null;
+    }
+
+    // Функция для открытия плеера
+    function openPlayer() {
+        if (!currentFilm) {
+            alert("Пожалуйста, выберите фильм для просмотра");
+            return;
+        }
+        
+        document.getElementById("playerFilmTitle").textContent = `Смотрим: ${currentFilm.title}`;
+        document.getElementById("playerModal").style.display = "flex";
+        
+        // Загружаем видео с выбранным источником
+        changeSource(currentSource);
+    }
+
+    // Функция для изменения источника видео
+    function changeSource(source) {
+        currentSource = source;
+        
+        // Обновляем активную кнопку
+        document.querySelectorAll('.source-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        
+        // Скрываем все плееры
+        document.getElementById("playerIframe").style.display = "none";
+        document.getElementById("cdnvideohubContainer").style.display = "none";
+        
+        // Формируем URL для выбранного источника с ID Кинопоиска
+        if (currentFilm && currentFilm.id) {
+            if (source === 'source5') {
+                // Особый обработчик для CDNVideoHub
+                loadCDNVideoHubPlayer(currentFilm.id);
+            } else {
+                // Обычные источники
+                document.getElementById("playerIframe").style.display = "block";
+                const iframeSrc = sources[source] + currentFilm.id;
+                document.getElementById("playerIframe").src = iframeSrc;
+            }
+        }
+    }
+
+    // Функция для загрузки плеера CDNVideoHub
+    function loadCDNVideoHubPlayer(filmId) {
+        const container = document.getElementById("cdnvideohubContainer");
+        container.style.display = "block";
+        container.innerHTML = '<div style="padding: 20px; text-align: center;">Загрузка плеера CDNVideoHub...</div>';
+        
+        // Очищаем предыдущий плеер, если он был
+        const oldPlayer = document.getElementById('cdnvideohubvideoplayer');
+        if (oldPlayer) {
+            oldPlayer.remove();
+        }
+        
+        // Создаем новый элемент видеоплеера
+        const videoPlayer = document.createElement('video-player');
+        videoPlayer.id = 'cdnvideohubvideoplayer';
+        videoPlayer.setAttribute('data-publisher-id', '1617');
+        videoPlayer.setAttribute('data-title-id', filmId);
+        videoPlayer.setAttribute('data-aggregator', 'kp');
+        
+        container.innerHTML = '';
+        container.appendChild(videoPlayer);
+        
+        // Загружаем скрипт CDNVideoHub, если еще не загружен
+        if (!document.querySelector('script[src="https://player.cdnvideohub.com/s2/stable/video-player.umd.js"]')) {
+            const script = document.createElement('script');
+            script.src = 'https://player.cdnvideohub.com/s2/stable/video-player.umd.js';
+            script.async = true;
+            document.head.appendChild(script);
+            
+            script.onload = function() {
+                console.log('CDNVideoHub player script loaded');
+            };
+            
+            script.onerror = function() {
+                container.innerHTML = '<div style="padding: 20px; text-align: center; color: red;">Ошибка загрузки плеера CDNVideoHub</div>';
+            };
+        }
+    }
+
+    // Функция для закрытия плеера
+    function closePlayer() {
+        document.getElementById("playerModal").style.display = "none";
+        document.getElementById("playerIframe").src = ""; // Останавливаем видео
+        
+        // Очищаем контейнер CDNVideoHub
+        document.getElementById("cdnvideohubContainer").innerHTML = '';
+        document.getElementById("cdnvideohubContainer").style.display = "none";
+    }
+
+    // Обработка нажатия Enter в поле поиска
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            searchContent();
+        }
+    });
+
+    // Задержка для частиц
+    const particles = document.querySelectorAll('.particle');
+    particles.forEach(particle => {
+        const delay = Math.random() * 5;
+        particle.style.animationDelay = `${delay}s`;
+    });
+</script>
+</body>
+</html>
