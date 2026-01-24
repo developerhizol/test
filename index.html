@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bothost - Хостинг ботов для Telegram, Discord, VK, WhatsApp, Slack и Twitch | 99.9% Uptime</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Профессиональный хостинг ботов для Telegram, Discord, VK, WhatsApp, Slack и Twitch. 99.9% времени работы, автоматическое развертывание, мониторинг. Бесплатный тариф доступен. Python, Node.js, PHP боты.">
+    <meta name="keywords" content="хостинг ботов, telegram боты, discord боты, vk боты, whatsapp боты, slack боты, twitch боты, размещение ботов, сервер для ботов, python боты, nodejs боты, php боты, автоматизация мессенджеров, webhook хостинг, bot hosting, telegram bot hosting, discord bot hosting">
+    <meta name="author" content="Bothost">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    <link rel="canonical" href="https://bothost.ru/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bothost.ru/">
+    <meta property="og:title" content="Bothost - Хостинг ботов для мессенджеров | Telegram, Discord, VK, WhatsApp">
+    <meta property="og:description" content="Надежный хостинг ботов с 99.9% времени работы. Поддержка всех популярных платформ и языков программирования. Бесплатный тариф доступен.">
+    <meta property="og:image" content="https://bothost.ru/assets/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Bothost">
+    <meta property="og:locale" content="ru_RU">
+    
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://bothost.ru/">
+    <meta property="twitter:title" content="Bothost - Хостинг ботов для мессенджеров">
+    <meta property="twitter:description" content="Надежный хостинг ботов с 99.9% времени работы. Поддержка всех популярных платформ.">
+    <meta property="twitter:image" content="https://bothost.ru/assets/images/og-image.jpg">
+    
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#6366f1">
+    <meta name="msapplication-TileColor" content="#6366f1">
+    <meta name="application-name" content="Bothost">
+    <meta name="apple-mobile-web-app-title" content="Bothost">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Additional SEO for AI Search -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="geo.region" content="RU">
+    <meta name="geo.placename" content="Russia">
+    <meta name="language" content="Russian">
+    <meta name="revisit-after" content="7 days">
+    <meta name="distribution" content="global">
+    <meta name="rating" content="general">
+    
+    <!-- Rich Snippets for AI -->
+    <meta name="application-name" content="Bothost Bot Hosting">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Structured Data - Organization -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Bothost",
+        "url": "https://bothost.ru",
+        "logo": "https://bothost.ru/assets/images/logo.png",
+        "description": "Профессиональный хостинг ботов для Telegram, Discord, VK, WhatsApp, Slack и Twitch",
+        "foundingDate": "2024",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+7-800-555-0123",
+            "contactType": "customer service",
+            "email": "support@bothost.ru",
+            "availableLanguage": ["Russian"],
+            "areaServed": "RU"
+        },
+        "sameAs": [
+            "https://t.me/bothostru",
+            "https://github.com/bothost"
+        ],
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "127",
+            "bestRating": "5",
+            "worstRating": "1"
+        }
+    }
+    </script>
+    
+    <!-- Structured Data - WebSite -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Bothost",
+        "url": "https://bothost.ru",
+        "description": "Хостинг ботов для мессенджеров - Telegram, Discord, VK, WhatsApp, Slack, Twitch",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://bothost.ru/search?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Bothost"
+        }
+    }
+    </script>
+    
+    <!-- Structured Data - Service -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Хостинг ботов",
+        "description": "Профессиональный хостинг ботов для мессенджеров с 99.9% времени работы, автоматическим развертыванием и мониторингом",
+        "provider": {
+            "@type": "Organization",
+            "name": "Bothost",
+            "url": "https://bothost.ru"
+        },
+        "serviceType": "Bot Hosting",
+        "areaServed": {
+            "@type": "Country",
+            "name": "Russia"
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Тарифы хостинга ботов",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Starter - Бесплатный тариф",
+                        "description": "1 бот, 256 MB RAM, 0.5 GB SSD, базовый мониторинг"
+                    },
+                    "price": "0",
+                    "priceCurrency": "RUB",
+                    "availability": "https://schema.org/InStock"
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Basic - Популярный тариф",
+                        "description": "5 ботов, 1 GB RAM, 5 GB SSD, расширенный мониторинг, email поддержка"
+                    },
+                    "price": "99",
+                    "priceCurrency": "RUB",
+                    "availability": "https://schema.org/InStock"
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Pro - VIP тариф",
+                        "description": "20 ботов, 2 GB RAM, 15 GB SSD, полный мониторинг, поддержка 24/7"
+                    },
+                    "price": "250",
+                    "priceCurrency": "RUB",
+                    "availability": "https://schema.org/InStock"
+                }
+            ]
+        }
+    }
+    </script>
+    
+    <!-- Structured Data - FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Что такое хостинг ботов?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Хостинг ботов — это специализированная платформа для размещения и управления ботами различных мессенджеров и социальных сетей. Bothost предоставляет серверную инфраструктуру для запуска ботов 24/7, автоматическое развертывание и обновление, мониторинг производительности, масштабирование ресурсов и техническую поддержку."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Какие типы ботов поддерживает Bothost?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Bothost поддерживает Telegram боты, Discord боты, VK боты, WhatsApp боты, Slack боты, Twitch боты и Max боты. Мы поддерживаем боты на Python, Node.js, PHP и других популярных языках программирования."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Как развернуть бота на Bothost?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Развертывание бота на Bothost занимает несколько минут: зарегистрируйтесь на платформе, создайте новый проект и выберите тип бота, загрузите код через Git репозиторий или веб-интерфейс, настройте переменные окружения (токены, ключи API), запустите развертывание — система автоматически соберет и запустит бота."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Сколько стоит хостинг ботов?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Bothost предлагает гибкую тарифную политику: бесплатный тариф (1 бот, 256 MB RAM), Basic (99₽/мес, 5 ботов, 1 GB RAM), Pro (250₽/мес, 20 ботов, 2 GB RAM). Все тарифы включают мониторинг, поддержку и автоматическое резервное копирование."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Какие преимущества хостинга ботов?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Хостинг ботов предоставляет надежность (99.9% времени работы), масштабируемость (автоматическое увеличение ресурсов), безопасность (изоляция процессов, SSL сертификаты), простоту управления (веб-интерфейс), экономию времени и техническую поддержку 24/7."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Можно ли перенести существующего бота на Bothost?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Да, перенос существующего бота на Bothost прост и быстр: экспортируйте код бота, создайте проект на Bothost и загрузите код, настройте переменные окружения, запустите развертывание, обновите webhook URL. Наша команда поддержки поможет с миграцией бесплатно при переходе на платные тарифы."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Какие языки программирования поддерживаются?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Мы нативно поддерживаем Python, Node.js, Go, Java и PHP. Также вы можете использовать Dockerfile для запуска любого другого окружения."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Как происходит деплой?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Вы можете подключить свой GitHub/GitLab аккаунт. При каждом пуше в выбранную ветку (например, main) мы автоматически собираем и перезапускаем бота без простоя."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Можно ли хранить данные (базу данных)?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "На бесплатном тарифе данные стираются при перезапуске. На тарифах Basic и Pro доступно постоянное дисковое хранилище (Volume), а также managed базы данных."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Есть ли защита от DDoS?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Да, вся инфраструктура защищена профессиональной системой фильтрации трафика. Ваши боты останутся доступны даже под атакой."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Какой аптайм гарантирует Bothost?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Мы гарантируем 99.9% времени работы (uptime). Наша инфраструктура построена на надежных серверах с резервированием и автоматическим масштабированием."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Structured Data - HowTo (для процесса деплоя) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Как развернуть бота на Bothost",
+        "description": "Пошаговая инструкция по развертыванию бота на платформе Bothost",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Регистрация",
+                "text": "Зарегистрируйтесь на платформе Bothost и создайте аккаунт"
+            },
+            {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Создание бота",
+                "text": "Создайте новый проект и выберите тип бота (Telegram, Discord, VK и т.д.)"
+            },
+            {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Подключение репозитория",
+                "text": "Подключите ваш GitHub или GitLab репозиторий с кодом бота"
+            },
+            {
+                "@type": "HowToStep",
+                "position": 4,
+                "name": "Настройка переменных",
+                "text": "Настройте переменные окружения (токены, ключи API)"
+            },
+            {
+                "@type": "HowToStep",
+                "position": 5,
+                "name": "Запуск",
+                "text": "Запустите развертывание - система автоматически соберет и запустит бота"
+            }
+        ],
+        "totalTime": "PT5M",
+        "estimatedCost": {
+            "@type": "MonetaryAmount",
+            "currency": "RUB",
+            "value": "0"
+        }
+    }
+    </script>
+    
+    <!-- Structured Data - Product with Rating -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Bothost Bot Hosting",
+        "description": "Профессиональный хостинг ботов для мессенджеров с 99.9% времени работы",
+        "brand": {
+            "@type": "Brand",
+            "name": "Bothost"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "127",
+            "bestRating": "5",
+            "worstRating": "1"
+        },
+        "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "RUB",
+            "lowPrice": "0",
+            "highPrice": "250",
+            "offerCount": "3"
+        },
+        "category": "Web Hosting",
+        "audience": {
+            "@type": "Audience",
+            "audienceType": "Developers"
+        }
+    }
+    </script>
+    
+    <!-- Structured Data - BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Главная",
+                "item": "https://bothost.ru/"
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        /* --- VARIABLES --- */
+        :root {
+            --primary: #6366f1; --primary-dark: #4f46e5; --primary-light: #818cf8;
+            --success: #10b981; --warning: #f59e0b; --danger: #ef4444; --info: #3b82f6;
+            
+            --bg-body: #ffffff;
+            --bg-secondary: #f9fafb;
+            --bg-card: #ffffff;
+            --bg-header: rgba(255, 255, 255, 0.95);
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --text-light: #9ca3af;
+            
+            --border: #e5e7eb;
+            --border-dashed: #d1d5db;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            
+            --radius: 1rem;
+            --container: 1200px;
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --bg-header: rgba(15, 23, 42, 0.95);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-light: #64748b;
+            --border: #334155;
+            --border-dashed: #475569;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+        }
+
+        /* --- BASE --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-body); color: var(--text-main); line-height: 1.6; overflow-x: hidden; transition: background 0.3s, color 0.3s; width: 100%; max-width: 100vw; }
+        a { text-decoration: none; color: inherit; transition: 0.2s; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        
+        .container { max-width: var(--container); margin: 0 auto; padding: 0 20px; width: 100%; }
+        
+        /* BUTTONS (General) */
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; transition: 0.2s; border: none; cursor: pointer; font-size: 1rem; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow); }
+        .btn-secondary { background: var(--bg-secondary); color: var(--text-main); border: 1px solid var(--border); }
+        .btn-secondary:hover { border-color: var(--text-muted); }
+        .btn-outline { border: 2px solid var(--primary); color: var(--primary); background: transparent; }
+        .btn-outline:hover { background: var(--primary); color: white; }
+
+        /* --- HEADER --- */
+        .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--bg-header); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); transition: all 0.3s; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .nav-logo { display: flex; align-items: center; gap: 0.75rem; font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+        
+        .nav-menu { display: flex; gap: 2rem; align-items: center; margin: 0; padding: 0; }
+        .nav-menu > li { position: relative; display: flex; align-items: center; height: 80px; }
+        .nav-menu a { font-weight: 500; color: var(--text-muted); font-size: 0.95rem; display: flex; align-items: center; gap: 0.35rem; }
+        .nav-menu a:hover { color: var(--primary); }
+        
+        /* DROPDOWN */
+        .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: var(--bg-card); border: 1px solid var(--border); border-radius: 0.75rem; padding: 0.5rem; min-width: 220px; box-shadow: var(--shadow-lg); opacity: 0; visibility: hidden; transition: all 0.2s ease; z-index: 100; margin-top: -10px; }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .dropdown-menu li { height: auto; display: block; margin-bottom: 0.1rem; }
+        .dropdown-menu a { display: block; padding: 0.6rem 1rem; border-radius: 0.5rem; color: var(--text-main); font-size: 0.9rem; white-space: nowrap; width: 100%; }
+        .dropdown-menu a:hover { background: var(--bg-secondary); color: var(--primary); }
+        .dropdown-divider { height: 1px; background: var(--border); margin: 0.5rem 0; }
+
+        .nav-auth { display: flex; gap: 1rem; align-items: center; }
+        .btn-login { color: var(--text-main) !important; font-weight: 600 !important; }
+        .nav-toggle { display: none; flex-direction: column; gap: 6px; cursor: pointer; }
+        .nav-toggle span { width: 25px; height: 2px; background: var(--text-main); transition: 0.3s; }
+
+        /* --- HERO --- */
+        .hero { padding: 160px 0 100px; position: relative; overflow: hidden; }
+        .hero-bg { position: absolute; top: -50%; right: -20%; width: 80%; height: 100%; background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, rgba(255,255,255,0) 70%); z-index: -1; pointer-events: none; }
+        .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .hero-text h1 { font-size: 3.5rem; line-height: 1.1; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .gradient-text { background: linear-gradient(135deg, var(--primary) 0%, #a855f7 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-text p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 500px; }
+        .hero-buttons { display: flex; gap: 1rem; }
+
+        /* --- UPDATED HERO VISUAL --- */
+        .hero-visual { position: relative; height: 450px; display: flex; align-items: center; justify-content: center; overflow: hidden; max-width: 100%; }
+        .bot-core { width: 140px; height: 140px; background: var(--primary); border-radius: 2.5rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem; box-shadow: 0 20px 60px rgba(99,102,241,0.4); animation: float 6s ease-in-out infinite; z-index: 2; position: relative; }
+        
+        .bot-svg {
+            width: 90px;
+            height: 90px;
+            color: white; 
+        }
+
+        .robot-eyes {
+            transform-origin: center 45%; 
+            transform-box: fill-box;
+            animation: blink 4s infinite;
+        }
+
+        .orbit-item { 
+            position: absolute; 
+            top: 50%; left: 50%;
+            width: 50px; height: 50px; 
+            margin-top: -25px; margin-left: -25px; 
+            background: var(--bg-card); 
+            border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            box-shadow: var(--shadow); 
+            border: 1px solid var(--border); 
+            font-size: 1.5rem; 
+            z-index: 1;
+            animation: orbit-rotate 20s linear infinite; 
+        }
+
+        /* БЫЛО: 6 элементов, шаг ~3.33s */
+        /* СТАЛО: 7 элементов, шаг ~2.85s (20 / 7) */
+        
+        .orbit-item:nth-child(2) { animation-delay: 0s; color: #0088cc; }       /* TG */
+        .orbit-item:nth-child(3) { animation-delay: -2.85s; color: #5865F2; }  /* Discord */
+        .orbit-item:nth-child(4) { animation-delay: -5.7s; color: #0077FF; }   /* VK */
+        .orbit-item:nth-child(5) { animation-delay: -8.55s; color: #25D366; }  /* WhatsApp */
+        .orbit-item:nth-child(6) { animation-delay: -11.4s; color: #4A154B; }  /* Slack */
+        .orbit-item:nth-child(7) { animation-delay: -14.25s; color: #9146FF; } /* Twitch */
+        .orbit-item:nth-child(8) { animation-delay: -17.1s; color: #FF6B00; }  /* Max */
+
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        
+        @keyframes orbit-rotate {
+            from { transform: rotate(0deg) translateX(170px) rotate(0deg); }
+            to   { transform: rotate(360deg) translateX(170px) rotate(-360deg); }
+        }
+
+        @keyframes blink {
+            0%, 46%, 54%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.1); }
+        }
+
+        /* --- FEATURES --- */
+        .features { padding: 100px 0; background: var(--bg-secondary); }
+        .section-header { text-align: center; margin-bottom: 4rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .section-header h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
+        .section-header p { color: var(--text-muted); font-size: 1.1rem; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .feature-card { background: var(--bg-card); padding: 2rem; border-radius: 1.5rem; border: 1px solid var(--border); transition: 0.3s; }
+        .feature-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: var(--shadow-lg); }
+        .feature-icon { width: 60px; height: 60px; background: rgba(99,102,241,0.1); color: var(--primary); border-radius: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.5rem; }
+        .feature-card h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+        .feature-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* --- PRICING --- */
+        .pricing { padding: 100px 0; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        
+        .pricing-card { 
+            background: var(--bg-card); 
+            border-radius: 1.5rem; 
+            padding: 2.5rem; 
+            position: relative; 
+            transition: 0.3s; 
+            display: flex; 
+            flex-direction: column; 
+            height: 100%;
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
+        }
+        .pricing-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+        
+        /* COLORS */
+        .pricing-card.border-green { border-color: #10b981; }
+        .pricing-card.border-purple { border-color: #6366f1; }
+        .pricing-card.border-yellow { border-color: #f59e0b; }
+        
+        /* BADGES */
+        .plan-badge { 
+            position: absolute; top: -15px; left: 50%; transform: translateX(-50%); 
+            color: white; padding: 0.25rem 1rem; border-radius: 2rem; 
+            font-size: 0.8rem; font-weight: 600; white-space: nowrap; z-index: 2; 
+        }
+        .badge-green { background: #10b981; }
+        .badge-purple { background: #6366f1; }
+        .badge-yellow { background: #f59e0b; }
+        
+        .pricing-header { text-align: center; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px dashed var(--border); }
+        .price { font-size: 3rem; font-weight: 800; color: var(--text-main); display: flex; align-items: baseline; justify-content: center; gap: 0.25rem; }
+        .currency { font-size: 1.5rem; font-weight: 500; }
+        .period { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+        
+        .pricing-features { margin-bottom: 1.5rem; }
+        .pricing-features ul { padding: 0; margin: 0; list-style: none; }
+        .pricing-features li { margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text-main); }
+        .pricing-features i { color: var(--success); flex-shrink: 0; }
+        
+        /* LIMITS TABLE */
+        .plan-limits { 
+            background: var(--bg-secondary); 
+            padding: 0.75rem; 
+            border-radius: 0.5rem; 
+            margin-bottom: 1.5rem; 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 0.25rem 1rem; 
+        }
+        .plan-limits-title { 
+            grid-column: 1 / -1; 
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            color: var(--text-muted); 
+            margin-bottom: 0.25rem; 
+            text-transform: uppercase;
+        }
+        .plan-limits-item { 
+            display: flex; 
+            justify-content: space-between; 
+            font-size: 0.75rem; 
+            color: var(--text-muted); 
+            padding: 2px 0; 
+            border-bottom: 1px dashed var(--border-dashed); 
+        }
+        .plan-limits-item strong { color: var(--text-main); }
+        
+        /* COLORED BUTTONS */
+        .pricing-card .btn { width: 100%; justify-content: center; margin-top: auto; color: white; border: none; }
+        .btn-green { background: #10b981; }
+        .btn-green:hover { background: #059669; }
+        .btn-purple { background: #6366f1; }
+        .btn-purple:hover { background: #4f46e5; }
+        .btn-yellow { background: #f59e0b; }
+        .btn-yellow:hover { background: #d97706; }
+
+        /* --- FAQ --- */
+        .faq { padding: 100px 0; background: var(--bg-secondary); }
+        .faq-container { max-width: 900px; margin: 0 auto; }
+        .faq-item { 
+            background: var(--bg-card); 
+            border: 1px solid var(--border); 
+            border-radius: 1rem; 
+            margin-bottom: 1.25rem; 
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+        .faq-item:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        .faq-item.active {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+        .faq-question { 
+            padding: 1.75rem 2rem; 
+            cursor: pointer; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            font-weight: 600; 
+            font-size: 1.15rem;
+            color: var(--text-main);
+            transition: all 0.2s ease;
+        }
+        .faq-question:hover {
+            color: var(--primary);
+        }
+        .faq-question h3 {
+            margin: 0;
+            font-size: 1.15rem;
+            font-weight: 600;
+            line-height: 1.4;
+            flex: 1;
+        }
+        .faq-question i { 
+            transition: 0.3s ease; 
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-left: 1rem;
+            flex-shrink: 0;
+        }
+        .faq-item.active .faq-question i { 
+            transform: rotate(180deg); 
+            color: var(--primary); 
+        }
+        .faq-answer { 
+            padding: 0 2rem; 
+            max-height: 0; 
+            overflow: hidden; 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+        .faq-item.active .faq-answer { 
+            padding: 0 2rem 2rem; 
+            max-height: 2000px; 
+        }
+        .faq-answer p {
+            margin: 0 0 1rem 0;
+            font-size: 1rem;
+        }
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+        .faq-answer ul,
+        .faq-answer ol {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+        .faq-answer ul li,
+        .faq-answer ol li {
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+        .faq-answer ul li:last-child,
+        .faq-answer ol li:last-child {
+            margin-bottom: 0;
+        }
+        .faq-answer strong {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        /* --- CONTACT --- */
+        .contact { padding: 100px 0; }
+        .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 2rem; padding: 3rem; box-shadow: var(--shadow-lg); }
+        .contact-info h3 { margin-bottom: 1.5rem; }
+        .info-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+        .info-icon { width: 40px; height: 40px; background: var(--bg-secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary); flex-shrink: 0; }
+        .contact-form { display: grid; gap: 1rem; }
+        .form-input, .form-textarea { width: 100%; padding: 1rem; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 0.5rem; color: var(--text-main); font-family: inherit; }
+        .form-input:focus, .form-textarea:focus { outline: none; border-color: var(--primary); }
+
+        /* --- FOOTER --- */
+        .footer { background: #0f172a; color: #94a3b8; padding: 80px 0 40px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 4rem; }
+        .footer-logo { color: white; font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
+        .footer-desc { margin-bottom: 1.5rem; max-width: 300px; font-size: 0.9rem; }
+        .social-links { display: flex; gap: 1rem; }
+        .social-link { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; transition: 0.2s; }
+        .social-link:hover { background: var(--primary); }
+        .footer-col h4 { color: white; margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .footer-col ul li { margin-bottom: 0.75rem; }
+        .footer-col a { transition: 0.2s; }
+        .footer-col a:hover { color: white; }
+        .footer-bottom { border-top: 1px solid #334155; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; }
+
+        /* --- COOKIE BANNER --- */
+        .cookie-banner { position: fixed; bottom: 20px; right: 20px; background: var(--bg-card); padding: 1.5rem; border-radius: 1rem; border: 1px solid var(--border); box-shadow: var(--shadow-lg); max-width: 400px; z-index: 2000; display: none; transform: translateY(100px); transition: 0.5s; }
+        .cookie-banner.show { transform: translateY(0); display: block; }
+        .cookie-actions { display: flex; gap: 1rem; margin-top: 1rem; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 968px) {
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-text p { margin: 0 auto 2.5rem; }
+            .hero-buttons { justify-content: center; }
+            .hero-bg { display: none; }
+            .contact-wrapper { grid-template-columns: 1fr; padding: 2rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-menu { display: none; position: absolute; top: 80px; left: 0; width: 100%; background: var(--bg-card); padding: 2rem; flex-direction: column; border-bottom: 1px solid var(--border); height: auto; }
+            .nav-menu.active { display: flex; }
+            .nav-menu > li { height: auto; margin-bottom: 1rem; width: 100%; display: block; }
+            .nav-toggle { display: flex; }
+            .nav-auth { display: none; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+            
+            .dropdown:hover .dropdown-menu { display: block; }
+            .dropdown-menu { position: static; transform: none; box-shadow: none; border: none; border-left: 2px solid var(--border); padding-left: 1rem; margin-top: 0.5rem; display: none; visibility: visible; opacity: 1; width: 100%; background: transparent; }
+            .dropdown-toggle { justify-content: space-between; width: 100%; }
+            
+            /* Hero adjustments */
+            .hero { padding: 120px 0 60px; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-text p { font-size: 1.1rem; }
+            .hero-visual { height: 350px; }
+            .bot-core { width: 100px; height: 100px; font-size: 3rem; }
+            .bot-svg { width: 60px; height: 60px; }
+            
+            /* Orbit adjustments */
+            @keyframes orbit-rotate {
+                from { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+                to   { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+            }
+            .orbit-item { width: 40px; height: 40px; font-size: 1.2rem; }
+            
+            /* Section headers */
+            .section-header h2 { font-size: 2rem; }
+            .section-header p { font-size: 1rem; }
+            
+            /* Features grid */
+            .features-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            
+            /* Pricing grid */
+            .pricing-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .pricing-card { padding: 2rem; }
+            
+            /* FAQ */
+            .faq-question { padding: 1.25rem 1.5rem; font-size: 1rem; }
+            .faq-answer { padding: 0 1.5rem 1.5rem; }
+            
+            /* Contact */
+            .contact-wrapper { padding: 1.5rem; }
+            
+            /* Container padding */
+            .container { padding: 0 15px; }
+        }
+        
+        @media (max-width: 480px) {
+            /* Hero adjustments for small phones */
+            .hero { padding: 100px 0 50px; }
+            .hero-text h1 { font-size: 2rem; line-height: 1.2; margin-bottom: 1rem; }
+            .hero-text p { font-size: 1rem; margin-bottom: 2rem; }
+            .hero-buttons { flex-direction: column; gap: 0.75rem; }
+            .hero-buttons .btn { width: 100%; justify-content: center; }
+            .hero-visual { height: 280px; }
+            .bot-core { width: 80px; height: 80px; font-size: 2.5rem; }
+            .bot-svg { width: 50px; height: 50px; }
+            
+            /* Orbit adjustments for small screens */
+            @keyframes orbit-rotate {
+                from { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+                to   { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+            }
+            .orbit-item { width: 35px; height: 35px; font-size: 1rem; }
+            
+            /* Section headers */
+            .section-header { margin-bottom: 2.5rem; }
+            .section-header h2 { font-size: 1.75rem; }
+            .section-header p { font-size: 0.95rem; }
+            
+            /* Features */
+            .features { padding: 60px 0; }
+            .feature-card { padding: 1.5rem; }
+            .feature-icon { width: 50px; height: 50px; font-size: 1.25rem; }
+            .feature-card h3 { font-size: 1.1rem; }
+            .feature-card p { font-size: 0.9rem; }
+            
+            /* Pricing */
+            .pricing { padding: 60px 0; }
+            .pricing-card { padding: 1.5rem; }
+            .price { font-size: 2.5rem; }
+            .pricing-features li { font-size: 0.85rem; }
+            .plan-limits { padding: 0.5rem; gap: 0.2rem 0.75rem; }
+            .plan-limits-item { font-size: 0.7rem; }
+            
+            /* FAQ */
+            .faq { padding: 60px 0; }
+            .faq-question { padding: 1rem 1.25rem; }
+            .faq-question h3 { font-size: 1rem; }
+            .faq-answer { padding: 0 1.25rem 1.25rem; font-size: 0.9rem; }
+            
+            /* Contact */
+            .contact { padding: 60px 0; }
+            .contact-wrapper { padding: 1.25rem; }
+            .info-item { margin-bottom: 1rem; }
+            
+            /* Footer */
+            .footer { padding: 60px 0 30px; }
+            .footer-grid { gap: 2rem; }
+            .footer-col h4 { font-size: 1rem; margin-bottom: 1rem; }
+            .footer-col ul li { font-size: 0.85rem; }
+            
+            /* Container padding */
+            .container { padding: 0 12px; }
+            
+            /* Buttons */
+            .btn { padding: 0.65rem 1.25rem; font-size: 0.9rem; }
+            
+            /* Nav */
+            .nav-container { height: 70px; }
+            .nav-logo { font-size: 1.25rem; }
+            .nav-menu { top: 70px; padding: 1.5rem; }
+        }
+        
+        /* Animation Helpers */
+        .fade-up { opacity: 0; transform: translateY(30px); transition: 0.6s ease-out; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        
+        /* Breadcrumbs - скрыты на главной, но структурированные данные остаются для SEO */
+        .breadcrumbs { display: none; }
+        .breadcrumbs ol { display: flex; gap: 0.5rem; list-style: none; margin: 0; padding: 0; font-size: 0.9rem; color: var(--text-muted); }
+        .breadcrumbs a { color: var(--text-muted); }
+        .breadcrumbs a:hover { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+<header class="header" itemscope itemtype="https://schema.org/WPHeader">
+    <div class="container nav-container">
+        <a href="/" class="nav-logo">
+            <i class="fas fa-robot"></i> Bothost
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="/">Главная</a></li>
+            <li><a href="#features">Преимущества</a></li>
+            <li class="dropdown">
+                <a href="#pricing" class="dropdown-toggle" style="color: ;">
+                    Тарифы <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/#pricing">Все тарифы</a></li>
+                    <li><a href="/free-hosting">Бесплатный хостинг</a></li>
+                    <li class="dropdown-divider"></li>
+                    <li><a href="/telegram-bots">Telegram боты</a></li>
+                    <li><a href="/discord-bots">Discord боты</a></li>
+                    <li><a href="/vk-bots">VK боты</a></li>
+                    <li><a href="/whatsapp-bots">WhatsApp боты</a></li>
+                    <li><a href="/slack-bots">Slack боты</a></li>
+                    <li><a href="/twitch-bots">Twitch боты</a></li>
+                    <li><a href="/max-bots">Max боты</a></li>
+                </ul>
+            </li>
+            <li><a href="/#faq">FAQ</a></li>
+            <li><a href="/#contact">Контакты</a></li>
+            <li><a href="../blog/">Блог</a></li>
+            <li style="margin-top: 1rem; display: none;" class="mobile-auth">
+                <a href="/login">Войти</a>
+            </li>
+        </ul>
+
+        <div class="nav-auth">
+            <button class="btn btn-secondary" onclick="toggleTheme()" title="Сменить тему"><i class="fas fa-moon"></i></button>
+            <a href="/login" class="btn-login">Войти</a>
+            <a href="/register" class="btn btn-primary">Регистрация</a>
+        </div>
+
+        <div class="nav-toggle" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</header>
+    <!-- Breadcrumbs -->
+    <nav aria-label="Хлебные крошки" class="breadcrumbs">
+        <div class="container">
+            <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a itemprop="item" href="https://bothost.ru/">
+                        <span itemprop="name">Главная</span>
+                    </a>
+                    <meta itemprop="position" content="1" />
+                </li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home" class="hero" itemscope itemtype="https://schema.org/WebPage">
+        <div class="hero-bg"></div>
+        <div class="container hero-content">
+            <div class="hero-text fade-up">
+                <h1 itemprop="headline">Хостинг ботов для <span class="gradient-text">мессенджеров</span></h1>
+                <p itemprop="description">Размещайте и управляйте ботами для Telegram, Discord, VK, WhatsApp на надежном хостинге. Автоматический деплой, SSL и мониторинг 24/7.</p>
+                <div class="hero-buttons">
+                    <a href="/register" class="btn btn-primary"><i class="fas fa-rocket"></i> Начать бесплатно</a>
+                    <a href="#features" class="btn btn-secondary"><i class="fas fa-info-circle"></i> Узнать больше</a>
+                </div>
+            </div>
+            
+            <div class="hero-visual fade-up">
+                <div class="bot-core">
+                    <svg class="bot-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Антенна -->
+                        <circle cx="16" cy="3" r="2" fill="currentColor"/>
+                        <rect x="15" y="5" width="2" height="3" fill="currentColor"/>
+                        
+                        <!-- Уши (Боковые элементы) -->
+                        <circle cx="3" cy="18" r="2" fill="currentColor"/>
+                        <circle cx="29" cy="18" r="2" fill="currentColor"/>
+                        
+                        <!-- Голова -->
+                        <rect x="5" y="8" width="22" height="18" rx="4" fill="currentColor"/>
+                        
+                        <!-- Глаза (Группа для анимации) -->
+                        <g class="robot-eyes">
+                            <circle cx="11" cy="15" r="2.5" fill="var(--primary)"/>
+                            <circle cx="21" cy="15" r="2.5" fill="var(--primary)"/>
+                        </g>
+                        
+                        <!-- Рот -->
+                        <rect x="10" y="21" width="12" height="2" rx="1" fill="var(--primary)"/>
+                    </svg>
+                </div>
+                <!-- Orbiting Icons -->
+                <!-- БЫЛО: 6 иконок -->
+                <!-- СТАЛО: 7 иконок (Добавлена Max) -->
+                <div class="orbit-item"><i class="fab fa-telegram-plane"></i></div>
+                <div class="orbit-item"><i class="fab fa-discord"></i></div>
+                <div class="orbit-item"><i class="fab fa-vk"></i></div>
+                <div class="orbit-item"><i class="fab fa-whatsapp"></i></div>
+                <div class="orbit-item"><i class="fab fa-slack"></i></div>
+                <div class="orbit-item"><i class="fab fa-twitch"></i></div>
+                <div class="orbit-item"><i class="fas fa-comment-dots" style="color: #FF6B00;"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="features" itemscope itemtype="https://schema.org/ItemList">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2>Почему выбирают Bothost?</h2>
+                <p>Мы создали платформу, которая берет на себя всю рутину DevOps, чтобы вы могли сосредоточиться на коде.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card fade-up" itemscope itemprop="itemListElement" itemtype="https://schema.org/Service">
+                    <div class="feature-icon"><i class="fas fa-server"></i></div>
+                    <h3 itemprop="name">Надежный хостинг</h3>
+                    <p itemprop="description">Изолированные контейнеры для каждого бота. Гарантированный аптайм 99.9% и защита от DDoS.</p>
+                </div>
+                <div class="feature-card fade-up" itemscope itemprop="itemListElement" itemtype="https://schema.org/Service">
+                    <div class="feature-icon"><i class="fas fa-code-branch"></i></div>
+                    <h3 itemprop="name">Git Deploys</h3>
+                    <p itemprop="description">Просто подключите ваш GitHub или GitLab репозиторий. Бот обновится автоматически при пуше в ветку.</p>
+                </div>
+                <div class="feature-card fade-up" itemscope itemprop="itemListElement" itemtype="https://schema.org/Service">
+                    <div class="feature-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3 itemprop="name">Мониторинг</h3>
+                    <p itemprop="description">Следите за потреблением ресурсов (CPU, RAM) и логами вашего бота в реальном времени.</p>
+                </div>
+                <div class="feature-card fade-up" itemscope itemprop="itemListElement" itemtype="https://schema.org/Service">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3 itemprop="name">Безопасность</h3>
+                    <p itemprop="description">SSL сертификаты для Webhooks из коробки. Безопасное хранение токенов и переменных окружения.</p>
+                </div>
+                <div class="feature-card fade-up" itemscope itemprop="itemListElement" itemtype="https://schema.org/Service">
+                    <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3 itemprop="name">Удобное управление</h3>
+                    <p itemprop="description">Адаптивная панель управления позволяет перезагружать ботов прямо с телефона.</p>
+                </div>
+                <div class="feature-card fade-up" itemscope itemprop="itemListElement" itemtype="https://schema.org/Service">
+                    <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                    <h3 itemprop="name">Поддержка 24/7</h3>
+                    <p itemprop="description">Наша команда инженеров всегда готова помочь с настройкой окружения или дебагом.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING (UPDATED) -->
+    <section id="pricing" class="pricing" itemscope itemtype="https://schema.org/OfferCatalog">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2 itemprop="name">Тарифные планы</h2>
+                <p>Начните бесплатно, масштабируйтесь по мере роста вашего проекта.</p>
+            </div>
+            
+            <div class="pricing-grid" itemprop="itemListElement" itemscope itemtype="https://schema.org/ItemList">
+                <!-- Free -->
+                <div class="pricing-card fade-up border-green" itemscope itemtype="https://schema.org/Offer" itemprop="itemListElement">
+                    <meta itemprop="position" content="1">
+                    <div class="plan-badge badge-green">Начальный</div>
+                    <div class="pricing-header">
+                        <h3 itemprop="name">Starter</h3>
+                        <div class="price">
+                            <span class="currency">₽</span>
+                            <span class="amount" itemprop="price">0</span>
+                            <span class="period">/мес</span>
+                        </div>
+                        <meta itemprop="priceCurrency" content="RUB">
+                        <meta itemprop="availability" content="https://schema.org/InStock">
+                        <link itemprop="itemOffered" itemscope itemtype="https://schema.org/Service" href="#service-starter">
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Авто-деплой</li>
+                            <li><i class="fas fa-check"></i> Логи в реальном времени</li>
+                            <li><i class="fas fa-check"></i> Docker контейнеры</li>
+                            <li><i class="fas fa-check"></i> Webhooks (SSL)</li>
+                            <li><i class="fas fa-check"></i> Поддержка сообщества</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="plan-limits">
+                        <div class="plan-limits-title">Лимиты:</div>
+                        <div class="plan-limits-item"><span>Боты</span> <strong>1</strong></div>
+                        <div class="plan-limits-item"><span>CPU</span> <strong>1 vCPU</strong></div>
+                        <div class="plan-limits-item"><span>RAM</span> <strong>256 MB</strong></div>
+                        <div class="plan-limits-item"><span>SSD</span> <strong>0.5 GB</strong></div>
+                    </div>
+                    
+                    <a href="/register" class="btn btn-green">Попробовать</a>
+                </div>
+                
+                <!-- Basic -->
+                <div class="pricing-card fade-up border-purple" itemscope itemtype="https://schema.org/Offer" itemprop="itemListElement">
+                    <meta itemprop="position" content="2">
+                    <div class="plan-badge badge-purple">Популярный</div>
+                    <div class="pricing-header">
+                        <h3 itemprop="name">Basic</h3>
+                        <div class="price">
+                            <span class="currency">₽</span>
+                            <span class="amount" itemprop="price">99</span>
+                            <span class="period">/мес</span>
+                        </div>
+                        <meta itemprop="priceCurrency" content="RUB">
+                        <meta itemprop="availability" content="https://schema.org/InStock">
+                        <link itemprop="itemOffered" itemscope itemtype="https://schema.org/Service" href="#service-basic">
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Все из Starter</li>
+                            <li><i class="fas fa-check"></i> Env переменные</li>
+                            <li><i class="fas fa-check"></i> Авто-бэкапы</li>
+                            <li><i class="fas fa-check"></i> Аналитика</li>
+                            <li><i class="fas fa-check"></i> Email алерты</li>
+                            <li><i class="fas fa-check"></i> Support (рабочий день)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="plan-limits">
+                        <div class="plan-limits-title">Лимиты:</div>
+                        <div class="plan-limits-item"><span>Боты</span> <strong>5</strong></div>
+                        <div class="plan-limits-item"><span>CPU</span> <strong>2 vCPU</strong></div>
+                        <div class="plan-limits-item"><span>RAM</span> <strong>1 GB</strong></div>
+                        <div class="plan-limits-item"><span>SSD</span> <strong>5 GB</strong></div>
+                    </div>
+                    
+                    <a href="/register" class="btn btn-purple">Выбрать</a>
+                </div>
+                
+                <!-- Pro -->
+                <div class="pricing-card fade-up border-yellow" itemscope itemtype="https://schema.org/Offer" itemprop="itemListElement">
+                    <meta itemprop="position" content="3">
+                    <div class="plan-badge badge-yellow">VIP</div>
+                    <div class="pricing-header">
+                        <h3 itemprop="name">Pro</h3>
+                        <div class="price">
+                            <span class="currency">₽</span>
+                            <span class="amount" itemprop="price">250</span>
+                            <span class="period">/мес</span>
+                        </div>
+                        <meta itemprop="priceCurrency" content="RUB">
+                        <meta itemprop="availability" content="https://schema.org/InStock">
+                        <link itemprop="itemOffered" itemscope itemtype="https://schema.org/Service" href="#service-pro">
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Все из Basic</li>
+                            <li><i class="fas fa-check"></i> Авто-скейлинг</li>
+                            <li><i class="fas fa-check"></i> Выделенные ресурсы</li>
+                            <li><i class="fas fa-check"></i> Git Push деплой</li>
+                            <li><i class="fas fa-check"></i> TG/SMS алерты</li>
+                            <li><i class="fas fa-check"></i> Support 24/7 VIP</li>
+                            <li><i class="fas fa-check"></i> Приоритет обновлений</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="plan-limits">
+                        <div class="plan-limits-title">Лимиты:</div>
+                        <div class="plan-limits-item"><span>Боты</span> <strong>20</strong></div>
+                        <div class="plan-limits-item"><span>CPU</span> <strong>4 vCPU</strong></div>
+                        <div class="plan-limits-item"><span>RAM</span> <strong>2 GB</strong></div>
+                        <div class="plan-limits-item"><span>SSD</span> <strong>15 GB</strong></div>
+                    </div>
+                    
+                    <a href="/register" class="btn btn-yellow">Для профи</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq" itemscope itemtype="https://schema.org/FAQPage">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2>Часто задаваемые вопросы</h2>
+                <p>Ответы на популярные вопросы о хостинге ботов</p>
+            </div>
+            <div class="faq-container" itemprop="mainEntity" itemscope itemtype="https://schema.org/ItemList">
+                <div class="faq-item fade-up" itemscope itemprop="itemListElement" itemtype="https://schema.org/Question">
+                    <div class="faq-question" itemprop="name">
+                        <h3>Что такое хостинг ботов?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p><strong>Хостинг ботов</strong> — это специализированная платформа для размещения и управления ботами различных мессенджеров и социальных сетей. Наш хостинг ботов Bothost предоставляет:</p>
+                            <ul>
+                                <li>Серверную инфраструктуру для запуска ботов 24/7</li>
+                                <li>Автоматическое развертывание и обновление ботов</li>
+                                <li>Мониторинг производительности и состояния ботов</li>
+                                <li>Масштабирование ресурсов по требованию</li>
+                                <li>Техническую поддержку и обслуживание</li>
+                            </ul>
+                            <p>Хостинг ботов позволяет разработчикам сосредоточиться на создании функциональности, не беспокоясь о серверной части. Это особенно важно для Telegram ботов, Discord ботов, VK ботов и других автоматизированных систем.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-up" itemscope itemprop="itemListElement" itemtype="https://schema.org/Question">
+                    <div class="faq-question" itemprop="name">
+                        <h3>Какие типы ботов поддерживает Bothost?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>Bothost поддерживает широкий спектр ботов для популярных платформ:</p>
+                            <ul>
+                                <li><strong>Telegram боты</strong> — для автоматизации в Telegram</li>
+                                <li><strong>Discord боты</strong> — для серверов Discord</li>
+                                <li><strong>VK боты</strong> — для ВКонтакте</li>
+                                <li><strong>WhatsApp боты</strong> — для бизнес-автоматизации</li>
+                                <li><strong>Slack боты</strong> — для корпоративных чатов</li>
+                                <li><strong>Twitch боты</strong> — для стриминговых каналов</li>
+                                <li><strong>Max боты</strong> — для Max мессенджера</li>
+                            </ul>
+                            <p>Мы поддерживаем боты на Python, Node.js, PHP и других популярных языках программирования.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up" itemscope itemprop="itemListElement" itemtype="https://schema.org/Question">
+                    <div class="faq-question" itemprop="name">
+                        <h3>Как развернуть бота на Bothost?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>Развертывание бота на Bothost занимает всего несколько минут:</p>
+                            <ol>
+                                <li>Зарегистрируйтесь на платформе</li>
+                                <li>Создайте новый проект и выберите тип бота</li>
+                                <li>Загрузите код через Git репозиторий или веб-интерфейс</li>
+                                <li>Настройте переменные окружения (токены, ключи API)</li>
+                                <li>Запустите развертывание — система автоматически соберет и запустит бота</li>
+                            </ol>
+                            <p>Наша платформа автоматически определяет технологию и создает оптимальную среду выполнения для вашего бота.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up" itemscope itemprop="itemListElement" itemtype="https://schema.org/Question">
+                    <div class="faq-question" itemprop="name">
+                        <h3>Сколько стоит хостинг ботов?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>Bothost предлагает гибкую тарифную политику:</p>
+                            <ul>
+                                <li><strong>Бесплатный тариф</strong> — 1 бот, 256 MB RAM, идеально для тестирования</li>
+                                <li><strong>Basic (99₽/мес)</strong> — 5 ботов, 1 GB RAM, для небольших проектов</li>
+                                <li><strong>Pro (250₽/мес)</strong> — 20 ботов, 2 GB RAM, для серьезных проектов</li>
+                            </ul>
+                            <p>Все тарифы включают мониторинг, поддержку и автоматическое резервное копирование. Вы можете изменить тариф в любой момент.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up" itemscope itemprop="itemListElement" itemtype="https://schema.org/Question">
+                    <div class="faq-question" itemprop="name">
+                        <h3>Какие преимущества хостинга ботов?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>Хостинг ботов предоставляет множество преимуществ:</p>
+                            <ul>
+                                <li><strong>Надежность</strong> — 99.9% времени работы, защита от сбоев</li>
+                                <li><strong>Масштабируемость</strong> — автоматическое увеличение ресурсов при росте нагрузки</li>
+                                <li><strong>Безопасность</strong> — изоляция процессов, SSL сертификаты, резервное копирование</li>
+                                <li><strong>Простота управления</strong> — веб-интерфейс для мониторинга и настройки</li>
+                                <li><strong>Экономия времени</strong> — не нужно настраивать серверы самостоятельно</li>
+                                <li><strong>Техническая поддержка</strong> — помощь специалистов 24/7</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up" itemscope itemprop="itemListElement" itemtype="https://schema.org/Question">
+                    <div class="faq-question" itemprop="name">
+                        <h3>Можно ли перенести существующего бота на Bothost?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>Да, перенос существующего бота на Bothost прост и быстр:</p>
+                            <ul>
+                                <li>Экспортируйте код бота из текущего хостинга</li>
+                                <li>Создайте проект на Bothost и загрузите код</li>
+                                <li>Настройте переменные окружения (токены, базы данных)</li>
+                                <li>Запустите развертывание</li>
+                                <li>Обновите webhook URL в настройках бота</li>
+                            </ul>
+                            <p>Наша команда поддержки поможет с миграцией бесплатно при переходе на платные тарифы.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up" itemscope itemprop="itemListElement" itemtype="https://schema.org/Question">
+                    <div class="faq-question" itemprop="name">
+                        <h3>Какие языки программирования поддерживаются?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>Мы нативно поддерживаем Python, Node.js, Go, Java и PHP. Также вы можете использовать Dockerfile для запуска любого другого окружения.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up" itemscope itemprop="itemListElement" itemtype="https://schema.org/Question">
+                    <div class="faq-question" itemprop="name">
+                        <h3>Как происходит деплой?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>Вы можете подключить свой GitHub/GitLab аккаунт. При каждом пуше в выбранную ветку (например, main) мы автоматически собираем и перезапускаем бота без простоя.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up" itemscope itemprop="itemListElement" itemtype="https://schema.org/Question">
+                    <div class="faq-question" itemprop="name">
+                        <h3>Можно ли хранить данные (базу данных)?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>На бесплатном тарифе данные стираются при перезапуске. На тарифах Basic и Pro доступно постоянное дисковое хранилище (Volume), а также managed базы данных.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up" itemscope itemprop="itemListElement" itemtype="https://schema.org/Question">
+                    <div class="faq-question" itemprop="name">
+                        <h3>Есть ли защита от DDoS?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>Да, вся инфраструктура защищена профессиональной системой фильтрации трафика. Ваши боты останутся доступны даже под атакой.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up" itemscope itemprop="itemListElement" itemtype="https://schema.org/Question">
+                    <div class="faq-question" itemprop="name">
+                        <h3>Какой аптайм гарантирует Bothost?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>Мы гарантируем 99.9% времени работы (uptime). Наша инфраструктура построена на надежных серверах с резервированием и автоматическим масштабированием.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact" itemscope itemtype="https://schema.org/ContactPage">
+        <div class="container">
+            <div class="contact-wrapper fade-up">
+                <div class="contact-info" itemscope itemtype="https://schema.org/Organization">
+                    <h3>Остались вопросы?</h3>
+                    <p style="margin-bottom: 2rem; color: var(--text-muted);">Заполните форму, и мы свяжемся с вами в ближайшее время. Или напишите нам напрямую.</p>
+                    
+                    <div class="info-item" itemscope itemtype="https://schema.org/ContactPoint">
+                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="mailto:support@bothost.ru" itemprop="email">support@bothost.ru</a></p>
+                            <meta itemprop="contactType" content="customer service">
+                        </div>
+                    </div>
+                    <div class="info-item" itemscope itemtype="https://schema.org/ContactPoint">
+                        <div class="info-icon"><i class="fab fa-telegram"></i></div>
+                        <div>
+                            <h4>Telegram</h4>
+                            <p><a href="https://t.me/bothostru" itemprop="url">@BothostSupport</a></p>
+                            <meta itemprop="contactType" content="customer service">
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Сообщение отправлено!');">
+                    <input type="text" class="form-input" placeholder="Ваше имя" required>
+                    <input type="email" class="form-input" placeholder="Email" required>
+                    <textarea class="form-textarea" rows="4" placeholder="Ваш вопрос..." required></textarea>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+<footer class="footer" itemscope itemtype="https://schema.org/WPFooter">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col" itemscope itemtype="https://schema.org/Organization">
+                <div class="footer-logo" itemprop="name"><i class="fas fa-robot"></i> Bothost</div>
+                <p class="footer-desc" itemprop="description">
+                    Платформа для легкого запуска и масштабирования чат-ботов. Забудьте о серверах, пишите код.                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Продукт</h4>
+                <ul>
+                    <li><a href="/#features">Возможности</a></li>
+                    <li><a href="/#pricing">Тарифы</a></li>
+                    <li><a href="#">Статус серверов</a></li>
+                    <li><a href="../docs/">Docs</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ресурсы</h4>
+                <ul>
+                    <li><a href="../blog/">Блог</a></li>
+                    <li><a href="#">База знаний</a></li>
+                    <li><a href="#">Сообщество</a></li>
+                    <li><a href="#">Партнерка</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Компания</h4>
+                <ul>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Вакансии</a></li>
+                    <li><a href="#">Правовая информация</a></li>
+                    <li><a href="/#contact">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Bothost. Все права защищены,  <a href="/documents/privacy.pdf">политика конфиденциальности.</a></p>
+            <p>Сделано с <i class="fas fa-heart" style="color: #ef4444;"></i> для разработчиков</p>
+        </div>
+    </div>
+</footer>
+
+<!-- COOKIE BANNER -->
+<div id="cookieBanner" class="cookie-banner">
+    <h4>Мы используем Cookie 🍪</h4>
+    <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0.5rem 0;">Мы используем файлы cookie для улучшения работы сайта и анализа трафика. Продолжая использовать сайт, вы соглашаетесь с этим.</p>
+    <div class="cookie-actions">
+        <button class="btn btn-primary btn-sm" onclick="acceptCookies()">Принять</button>
+        <button class="btn btn-secondary btn-sm" onclick="acceptCookies()">Закрыть</button>
+    </div>
+</div>
+
+<style>
+    /* --- COOKIE BANNER --- */
+    .cookie-banner { position: fixed; bottom: 20px; right: 20px; background: var(--bg-card); padding: 1.5rem; border-radius: 1rem; border: 1px solid var(--border); box-shadow: var(--shadow-lg); max-width: 400px; z-index: 2000; display: none; transform: translateY(100px); transition: 0.5s; }
+    .cookie-banner.show { transform: translateY(0); display: block; }
+    .cookie-actions { display: flex; gap: 1rem; margin-top: 1rem; }
+</style>
+
+<script>
+    // --- THEME LOGIC ---
+    function toggleTheme() {
+        const html = document.documentElement;
+        const isDark = html.getAttribute('data-theme') === 'dark';
+        const newTheme = isDark ? 'light' : 'dark';
+
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+
+        // Update icons
+        const icon = document.querySelector('.nav-auth i');
+        if(icon) icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+
+    // Load Theme
+    (function() {
+        const saved = localStorage.getItem('theme');
+        if(saved === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.addEventListener('DOMContentLoaded', () => {
+                const icon = document.querySelector('.nav-auth i');
+                if(icon) icon.className = 'fas fa-sun';
+            });
+        }
+    })();
+
+    // --- MENU LOGIC ---
+    function toggleMenu() {
+        document.getElementById('navMenu').classList.toggle('active');
+        // Show mobile auth links in menu
+        const mobileAuth = document.querySelector('.mobile-auth');
+        if(mobileAuth) mobileAuth.style.display = 'block';
+    }
+
+    // --- FAQ LOGIC ---
+    document.querySelectorAll('.faq-question').forEach(item => {
+        item.addEventListener('click', () => {
+            const parent = item.parentElement;
+            parent.classList.toggle('active');
+        });
+    });
+
+    // --- ANIMATION ON SCROLL ---
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // --- COOKIE BANNER ---
+    setTimeout(() => {
+        if (!localStorage.getItem('cookiesAccepted')) {
+            document.getElementById('cookieBanner').classList.add('show');
+        }
+    }, 2000);
+
+    function acceptCookies() {
+        localStorage.setItem('cookiesAccepted', 'true');
+        document.getElementById('cookieBanner').classList.remove('show');
+    }
+
+    // --- SMOOTH SCROLL ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+            // Close mobile menu if open
+            document.getElementById('navMenu').classList.remove('active');
+        });
+    });
+</script>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104311429', 'ym');
+
+    ym(104311429, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/104311429" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter --></body>
+</html>
