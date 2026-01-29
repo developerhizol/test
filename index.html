@@ -1,0 +1,2196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105845460', 'ym');
+
+        ym(105845460, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/105845460" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бесплатный Кинопоиск</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            background-color: #000 !important;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        #main-menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .title-container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .free-title {
+            font-size: 64px;
+            font-weight: 900;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .kinopoisk-title {
+            display: inline-block;
+            font-size: 64px;
+            font-weight: 900;
+            font-style: italic;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background-color: #ff6600;
+            padding: 15px 40px;
+            transform: skew(-15deg);
+            margin-top: 5px;
+            box-shadow: 0 5px 20px rgba(255, 102, 0, 0.3);
+        }
+
+        .title-text {
+            color: #ccc;
+            font-size: 22px;
+            margin-bottom: 5px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle-text {
+            color: #999;
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 40px;
+        }
+
+        .instruction-box {
+            background-color: #111;
+            border-radius: 15px;
+            padding: 25px 40px;
+            max-width: 700px;
+            width: 100%;
+            margin-bottom: 20px;
+            border: 1px solid #222;
+        }
+
+        .instruction-title {
+            color: #ccc;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .url-replacement {
+            background-color: #0a0a0a;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .url-part {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .domain-text {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .gray-text {
+            color: #999;
+        }
+
+        .kk-highlight {
+            background-color: #ff6600;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: 800;
+            margin: 0 2px;
+        }
+
+        .arrow {
+            position: relative;
+            width: 60px;
+            height: 2px;
+            background-color: #666;
+            margin: 0 10px;
+        }
+
+        .arrow::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            border-right: 2px solid #666;
+            border-top: 2px solid #666;
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .instruction-steps {
+            text-align: center;
+            color: #fff;
+            font-size: 18px;
+            line-height: 1.4;
+            margin-top: 15px;
+        }
+
+        .instruction-step {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Стили для экрана загрузки из loader.html */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.3s ease-out;
+        }
+
+        #loading-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loaderArea {
+            background-color: #000000 !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .camera-loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        #camera-loader {
+            width: 240px;
+            height: 280px;
+            margin: 0;
+            padding: 0;
+            display: block;
+            overflow: visible;
+        }
+
+        #camera-body {
+            fill: #ffffff;
+        }
+
+        /* Барабаны теперь оранжевые */
+        #reel-1, #reel-2 {
+            fill: #ffffff;
+        }
+
+        .loading-text-container {
+            margin-top: 0;
+            text-align: center;
+            width: 100%;
+            padding-left: 2mm;
+        }
+
+        .loading-text-container span {
+            color: #fff;
+            font-size: 36px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Постерный фон - постер яркий, затемнение только на стыке */
+        .poster-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 38vh;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .poster-background.loaded {
+            opacity: 1;
+        }
+
+        .poster-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            /* Убраны все фильтры затемнения */
+            filter: none;
+        }
+
+        /* Градиентное затемнение ТОЛЬКО на стыке с фоном */
+        .poster-blend-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Градиент начинается с 70% высоты, чтобы верх постерa оставался ярким */
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 0) 60%,
+                rgba(0, 0, 0, 0.1) 70%,
+                rgba(0, 0, 0, 0.2) 75%,
+                rgba(0, 0, 0, 0.3) 80%,
+                rgba(0, 0, 0, 0.45) 85%,
+                rgba(0, 0, 0, 0.6) 90%,
+                rgba(0, 0, 0, 0.8) 95%,
+                rgba(0, 0, 0, 1) 100%
+            );
+            pointer-events: none;
+        }
+
+        /* Дополнительный градиент для плавного перехода */
+        .poster-smooth-transition {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 0) 65%,
+                rgba(0, 0, 0, 0.05) 75%,
+                rgba(0, 0, 0, 0.1) 80%,
+                rgba(0, 0, 0, 0.15) 85%,
+                rgba(0, 0, 0, 0.2) 90%,
+                rgba(0, 0, 0, 0.25) 95%,
+                rgba(0, 0, 0, 0.3) 100%
+            );
+            mix-blend-mode: multiply;
+            pointer-events: none;
+        }
+
+        #main-content {
+            display: none;
+            background-color: #000;
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+            padding-top: 35vh;
+        }
+
+        /* Обертка для контента */
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            padding: 0 20px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Контейнер для плеера с кнопками внутри */
+        .player-wrapper {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            background-color: #111;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #222;
+        }
+
+        .player-switcher {
+            display: flex;
+            gap: 0;
+            background-color: #111;
+            padding: 10px;
+            width: 100%;
+            border-bottom: 2px solid #222;
+        }
+
+        .player-btn {
+            padding: 18px 30px; /* Уменьшил padding для 5 кнопок */
+            background-color: transparent;
+            color: #fff;
+            border: none;
+            border-radius: 0;
+            font-weight: 800;
+            font-size: 20px; /* Немного уменьшил размер шрифта */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            flex: 1;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            min-width: 0; /* Позволяет кнопкам сжиматься */
+        }
+
+        .player-btn.active {
+            background-color: #222;
+        }
+
+        .player-btn:not(.active) {
+            color: #888;
+        }
+
+        .player-btn:hover:not(.active) {
+            background-color: #1a1a1a;
+            color: #ccc;
+        }
+
+        .player-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            color: #666 !important;
+        }
+
+        .player-btn:disabled:hover {
+            background-color: transparent;
+            color: #666 !important;
+        }
+
+        .player-btn:focus {
+            outline: none;
+        }
+
+        .player-btn::-moz-focus-inner {
+            border: 0;
+        }
+
+        /* Уменьшаем контейнер плеера чтобы изображение не обрезалось */
+        .player-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 65%;
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        .ad-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 10;
+            opacity: 1;
+            cursor: pointer;
+            pointer-events: auto;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .ad-overlay.fade-out {
+            animation: fadeOut 0.3s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .ad-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+        }
+
+        .subscribe-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #0088cc;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 14px;
+            z-index: 11;
+            box-shadow: 0 3px 10px rgba(0, 136, 204, 0.4);
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .countdown-timer {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            color: white;
+            font-size: 18px;
+            font-weight: 400;
+            z-index: 11;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+            background-color: transparent;
+            padding: 0;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            font-family: 'Arial', sans-serif;
+            opacity: 0.9;
+        }
+
+        .skip-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: #aaa;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 14px;
+            z-index: 11;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            outline: none;
+            -webkit-tap-highlight-color: transparent !important;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .skip-button:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .skip-button::-moz-focus-inner {
+            border: 0;
+        }
+
+        .skip-button.active {
+            background-color: #ff0000;
+            color: white;
+        }
+
+        .skip-button.active .skip-countdown {
+            display: none;
+        }
+
+        .skip-text {
+            font-weight: 500;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .skip-countdown {
+            font-weight: 400;
+            font-size: 13px;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .player-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: none;
+            background-color: #000;
+        }
+
+        .player-frame.active {
+            display: block;
+        }
+
+        /* Контейнер для VideoCDN */
+        .videocdn-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            background-color: #000;
+        }
+
+        .videocdn-container.active {
+            display: block;
+        }
+
+        .movie-title-container {
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .movie-title {
+            background-color: #ff6600;
+            color: white;
+            font-weight: 900;
+            font-style: italic;
+            padding: 18px 35px;
+            transform: skew(-15deg);
+            font-size: 32px;
+            display: inline-block;
+            max-width: 100%;
+            white-space: normal;
+            word-wrap: break-word;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .movie-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .meta-item {
+            font-size: 18px;
+            color: #ccc;
+            font-weight: 500;
+        }
+
+        .meta-separator {
+            color: #666;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .rating-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background-color: rgba(255, 193, 7, 0.2);
+            padding: 6px 12px;
+            border-radius: 6px;
+        }
+
+        .custom-star {
+            width: 20px;
+            height: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .custom-star::before {
+            content: "★";
+            color: #ffc107;
+            font-size: 20px;
+            line-height: 1;
+            display: block;
+            font-weight: bold;
+        }
+
+        .rating-value {
+            color: #ffc107;
+            font-size: 18px;
+            font-weight: 800;
+            text-shadow: 0 0 1px rgba(255, 193, 7, 0.5);
+        }
+
+        .movie-description {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 17px;
+            max-width: 800px;
+            font-weight: 400;
+            margin-bottom: 40px;
+        }
+
+        /* СТИЛИ ДЛЯ СИКВЕЛОВ И ПРИКВЕЛОВ - ИСПРАВЛЕННЫЕ */
+        .sequels-prequels {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 50px;
+        }
+
+        .sequels-prequels-title {
+            color: #ccc;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+        }
+
+        .sequels-prequels-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .sequels-prequels-scroll {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 20px;
+            margin-bottom: 15px;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        .sequels-prequels-scroll::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        .sequel-prequel-card {
+            flex: 0 0 auto;
+            width: 180px; /* Ширина карточки */
+            background-color: transparent; /* Убрали фон у карточки */
+            border-radius: 6px; /* Уменьшили радиус в 2 раза (было 12px) */
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            border: none; /* Убрали границу */
+        }
+
+        .sequel-prequel-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* ПРЯМОУГОЛЬНЫЙ постер - соотношение сторон 2:3 (как у кинопостеров) */
+        .sequel-prequel-poster-container {
+            position: relative;
+            width: 100%;
+            height: 270px; /* Прямоугольник: 180px * 1.5 = 270px (соотношение 2:3) */
+            overflow: hidden;
+            border-radius: 6px; /* Уменьшили радиус в 2 раза (было 12px) */
+            margin-bottom: 12px; /* Отступ между постером и названием */
+        }
+
+        .sequel-prequel-poster {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+
+        .sequel-prequel-name {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 700; /* Жирный шрифт */
+            line-height: 1.3;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            max-height: 40px;
+            padding: 0 5px;
+        }
+
+        /* СТИЛИ ДЛЯ ПОЛОСЫ ПРОКРУТКИ - ПРАВИЛЬНО РАБОТАЮЩИЕ */
+        .scroll-track {
+            position: relative;
+            width: 100%;
+            height: 4px;
+            background-color: #333;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .scroll-thumb {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: #666;
+            border-radius: 2px;
+            transition: transform 0.1s ease; /* Плавная анимация перемещения */
+            min-width: 40px;
+            width: 0; /* Начальная ширина 0 */
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .copyright-footer {
+            width: 100%;
+            background-color: #000;
+            padding: 15px 20px;
+            text-align: center;
+            border-top: 1px solid #222;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .copyright-text {
+            color: #555;
+            font-weight: 500;
+        }
+
+        .copyright-email {
+            color: #888;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-weight: 500;
+            display: inline-block;
+            position: relative;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .copyright-email:hover {
+            color: #ff6600;
+            transform: translateY(-2px);
+        }
+
+        .copyright-email:active {
+            transform: translateY(0);
+            color: #ff6600;
+            background-color: transparent;
+        }
+
+        .copyright-email:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        @media (max-width: 768px) {
+            .free-title {
+                font-size: 48px;
+            }
+            
+            .kinopoisk-title {
+                font-size: 48px;
+                padding: 12px 30px;
+            }
+            
+            .title-text {
+                font-size: 18px;
+            }
+            
+            .subtitle-text {
+                font-size: 16px;
+            }
+            
+            .instruction-box {
+                padding: 20px;
+            }
+            
+            .instruction-title {
+                font-size: 20px;
+            }
+            
+            .domain-text {
+                font-size: 22px;
+            }
+            
+            .arrow {
+                width: 40px;
+                height: 1.5px;
+            }
+            
+            .arrow::after {
+                width: 8px;
+                height: 8px;
+            }
+            
+            .instruction-steps {
+                font-size: 16px;
+            }
+            
+            #main-content {
+                padding-top: 33vh;
+            }
+            
+            .content-wrapper {
+                padding: 0 15px 15px;
+            }
+            
+            .player-wrapper {
+                border-radius: 10px;
+            }
+            
+            .player-switcher {
+                padding: 8px;
+            }
+            
+            .player-btn {
+                padding: 12px 15px; /* Уменьшил для мобильных */
+                font-size: 16px; /* Уменьшил шрифт для мобильных */
+            }
+            
+            .player-container {
+                padding-bottom: 62%;
+            }
+            
+            .subscribe-badge {
+                font-size: 12px;
+                padding: 6px 12px;
+                top: 10px;
+                right: 10px;
+            }
+            
+            .countdown-timer {
+                font-size: 16px;
+                font-weight: 400;
+                top: 5px;
+                left: 5px;
+                background-color: transparent;
+                padding: 0;
+                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+            }
+            
+            .skip-button {
+                font-size: 12px;
+                padding: 8px 16px;
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .movie-title {
+                font-size: 26px;
+                padding: 15px 25px;
+            }
+            
+            .meta-item {
+                font-size: 16px;
+            }
+            
+            .rating-value {
+                font-size: 16px;
+            }
+            
+            .custom-star {
+                width: 18px;
+                height: 18px;
+            }
+            
+            .custom-star::before {
+                font-size: 18px;
+            }
+            
+            .movie-description {
+                font-size: 15px;
+            }
+            
+            #camera-loader {
+                width: 180px;
+                height: 210px;
+            }
+            
+            .loading-text-container span {
+                font-size: 32px;
+                letter-spacing: 1.6px;
+            }
+            
+            .sequels-prequels-title {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .sequel-prequel-card {
+                width: 140px; /* Уменьшили ширину для мобильных */
+            }
+            
+            .sequel-prequel-poster-container {
+                height: 210px; /* 140px * 1.5 = 210px (соотношение 2:3) */
+                border-radius: 5px; /* Уменьшили радиус для мобильных */
+            }
+            
+            .sequel-prequel-name {
+                font-size: 14px;
+                max-height: 36px;
+            }
+            
+            .copyright-footer {
+                padding: 12px 15px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .free-title {
+                font-size: 36px;
+            }
+            
+            .kinopoisk-title {
+                font-size: 36px;
+                padding: 10px 20px;
+            }
+            
+            .title-text {
+                font-size: 16px;
+            }
+            
+            .subtitle-text {
+                font-size: 14px;
+            }
+            
+            .instruction-box {
+                padding: 15px;
+            }
+            
+            .instruction-title {
+                font-size: 18px;
+            }
+            
+            .url-replacement {
+                padding: 15px;
+            }
+            
+            .domain-text {
+                font-size: 18px;
+            }
+            
+            .arrow {
+                width: 30px;
+                height: 1.5px;
+            }
+            
+            .arrow::after {
+                width: 7px;
+                height: 7px;
+            }
+            
+            .kk-highlight {
+                padding: 6px 10px;
+            }
+            
+            .instruction-steps {
+                font-size: 14px;
+            }
+            
+            #main-content {
+                padding-top: 30vh;
+            }
+            
+            .content-wrapper {
+                padding: 0 10px 10px;
+            }
+            
+            .player-wrapper {
+                border-radius: 8px;
+            }
+            
+            .player-switcher {
+                padding: 5px;
+                flex-wrap: wrap; /* На маленьких экранах разрешаем перенос */
+            }
+            
+            .player-btn {
+                padding: 8px 10px; /* Еще меньше для очень маленьких экранов */
+                font-size: 14px; /* Еще меньше шрифт */
+                min-width: 60px; /* Минимальная ширина для читаемости */
+            }
+            
+            .player-container {
+                padding-bottom: 60%;
+            }
+            
+            .subscribe-badge {
+                font-size: 11px;
+                padding: 5px 10px;
+            }
+            
+            .countdown-timer {
+                font-size: 14px;
+                font-weight: 400;
+                background-color: transparent;
+                padding: 0;
+                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+            }
+            
+            .skip-button {
+                font-size: 11px;
+                padding: 6px 12px;
+            }
+            
+            .movie-title {
+                font-size: 22px;
+                padding: 12px 20px;
+            }
+            
+            .meta-item {
+                font-size: 14px;
+            }
+            
+            .rating-value {
+                font-size: 14px;
+            }
+            
+            .custom-star {
+                width: 16px;
+                height: 16px;
+            }
+            
+            .custom-star::before {
+                font-size: 16px;
+            }
+            
+            .movie-description {
+                font-size: 14px;
+            }
+            
+            #camera-loader {
+                width: 120px;
+                height: 140px;
+            }
+            
+            .loading-text-container span {
+                font-size: 28px;
+                letter-spacing: 1.4px;
+            }
+            
+            .movie-meta {
+                gap: 8px;
+            }
+            
+            .meta-separator {
+                font-size: 16px;
+            }
+            
+            .sequels-prequels-title {
+                font-size: 18px;
+                margin-bottom: 18px;
+            }
+            
+            .sequel-prequel-card {
+                width: 120px; /* Еще меньше для очень маленьких экранов */
+            }
+            
+            .sequel-prequel-poster-container {
+                height: 180px; /* 120px * 1.5 = 180px (соотношение 2:3) */
+                border-radius: 4px; /* Уменьшили радиус для очень маленьких экранов */
+            }
+            
+            .sequel-prequel-name {
+                font-size: 13px;
+                max-height: 34px;
+            }
+            
+            .copyright-footer {
+                padding: 10px 12px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .free-title {
+                font-size: 32px;
+            }
+            
+            .kinopoisk-title {
+                font-size: 32px;
+                padding: 8px 16px;
+            }
+            
+            .title-text {
+                font-size: 14px;
+            }
+            
+            .subtitle-text {
+                font-size: 13px;
+            }
+            
+            .instruction-box {
+                padding: 12px;
+            }
+            
+            .domain-text {
+                font-size: 16px;
+            }
+            
+            .arrow {
+                width: 25px;
+            }
+            
+            #main-content {
+                padding-top: 27vh;
+            }
+            
+            .player-btn {
+                padding: 6px 8px;
+                font-size: 12px;
+            }
+            
+            .player-container {
+                padding-bottom: 58%;
+            }
+            
+            .movie-title {
+                font-size: 20px;
+                padding: 10px 15px;
+            }
+            
+            #camera-loader {
+                width: 100px;
+                height: 116.67px;
+            }
+            
+            .loading-text-container span {
+                font-size: 24px;
+                letter-spacing: 1.2px;
+            }
+            
+            .sequel-prequel-card {
+                width: 110px; /* Самый маленький размер */
+            }
+            
+            .sequel-prequel-poster-container {
+                height: 165px; /* 110px * 1.5 = 165px (соотношение 2:3) */
+                border-radius: 4px;
+            }
+            
+            .sequel-prequel-name {
+                font-size: 12px;
+                max-height: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шаг 1: Изначально показываем ТОЛЬКО главное меню -->
+    <div id="main-menu">
+        <div class="title-container">
+            <div class="free-title">БЕСПЛАТНЫЙ</div>
+            <div class="kinopoisk-title">КИНОПОИСК</div>
+        </div>
+        
+        <div class="title-text">Смотри любые фильмы без подписки.</div>
+        <div class="subtitle-text">Проще простого.</div>
+        
+        <div class="instruction-box">
+            <div class="instruction-title">КАК ЭТО РАБОТАЕТ?</div>
+            
+            <div class="url-replacement">
+                <div class="url-part">
+                    <span class="domain-text gray-text">kinopoisk.ru</span>
+                </div>
+                
+                <div class="arrow"></div>
+                
+                <div class="url-part">
+                    <span class="kk-highlight">kk</span>
+                    <span class="domain-text gray-text">poisk.ru</span>
+                </div>
+            </div>
+            
+            <div class="instruction-steps">
+                <span class="instruction-step">Откройте фильм на Кинопоиске,</span><br>
+                <span class="instruction-step">замените kinopoisk на kkpoisk и нажмите Enter.</span>
+            </div>
+        </div>
+        
+        <div class="copyright-footer">
+            <span class="copyright-text">Для правообладателей:</span> 
+            <a href="mailto:copyright@kkpoisk.ru?subject=Вопрос по правам&body=Здравствуйте, пишу по поводу прав на контент." class="copyright-email">copyright@kkpoisk.ru</a>
+        </div>
+    </div>
+
+    <!-- Шаг 2: Экран загрузки (скрыт изначально) -->
+    <div id="loading-screen" style="display: none;">
+        <div class="loaderArea">
+            <div class="camera-loader-container">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org" id="camera-loader" viewBox="0 0 85.708 100" preserveAspectRatio="xMidYMid meet">
+                    <defs id="defs12" />
+                    <path id="camera-body" d="M 51.5625 0 C 50.667739 -0.00962983 49.756943 0.05800477 48.84375 0.1875 C 41.018415 1.2971691 35.117198 7.3376842 33.8125 14.71875 C 30.504071 7.9918491 23.138091 3.8277945 15.3125 4.9375 C 5.573576 6.3185261 -1.1937811 15.321773 0.1875 25.0625 C 1.030765 31.00916 4.7245026 35.850708 9.6875 38.40625 L 10.59375 44.84375 L 41.21875 40.5 C 42.618434 40.301472 43.966737 41.101389 44.15625 42.4375 C 44.34576 43.773612 43.274684 44.957723 41.875 45.15625 L 11.25 49.5 L 12.40625 57.6875 C 12.593105 59.005185 13.837018 59.937079 15.15625 59.75 L 64.25 52.78125 C 65.567815 52.594377 66.499355 51.348937 66.3125 50.03125 L 63.5625 30.78125 C 67.618077 26.946961 69.843395 21.259142 69 15.3125 C 67.748216 6.4849658 60.211858 0.09304631 51.5625 0 z M 51.28125 3.75 C 58.168631 3.6506107 64.22589 8.6859174 65.21875 15.6875 C 66.295328 23.279482 61.029156 30.329715 53.4375 31.40625 C 45.84552 32.482829 38.795329 27.18573 37.71875 19.59375 C 36.641441 11.998855 41.938942 4.9828747 49.53125 3.90625 C 50.124347 3.8221462 50.697574 3.7584222 51.28125 3.75 z M 17.5625 8.53125 C 24.449868 8.4318561 30.507144 13.46718 31.5 20.46875 C 32.576577 28.060719 27.310389 35.110969 19.71875 36.1875 C 12.126783 37.264077 5.0765804 31.966969 4 24.375 C 2.9226914 16.780121 8.2202041 9.7641225 15.8125 8.6875 C 16.405598 8.603395 16.978824 8.5396714 17.5625 8.53125 z M 79.71875 27.46875 L 66.9375 33.65625 L 68.53125 44.8125 L 82.53125 47.21875 L 79.71875 27.46875 z M 41.71875 41.0625 C 41.582761 41.058251 41.422178 41.073761 41.28125 41.09375 L 8.15625 45.78125 L 7.90625 44.09375 L 2.78125 43.9375 L 4 52.53125 L 8.875 50.9375 L 8.625 49.25 L 41.78125 44.5625 C 42.908673 44.40259 43.699053 43.493996 43.5625 42.53125 C 43.443014 41.688847 42.670671 41.092246 41.71875 41.0625 z M 51.53125 57.21875 L 28.625 60.4375 C 28.625117 63.279515 28.625057 61.501735 28.625 64.34375 L 30.90625 64.34375 L 32.40625 64.34375 L 17.21875 97.46875 C 16.804629 98.371268 17.19123 99.429629 18.09375 99.84375 C 18.996268 100.25787 20.054629 99.87127 20.46875 98.96875 L 36.34375 64.34375 L 38.28125 64.34375 L 38.28125 98.21875 C 38.28125 99.211743 39.069507 100 40.0625 100 C 41.055493 100 41.875 99.211743 41.875 98.21875 L 41.875 64.34375 L 43.6875 64.34375 L 59.71875 98.96875 C 60.136118 99.869771 61.192729 100.26112 62.09375 99.84375 C 62.994771 99.426382 63.386118 98.338521 62.96875 97.4375 L 47.65625 64.34375 L 49.09375 64.34375 L 51.53125 64.34375 L 51.53125 57.21875 z " />
+                    <path id="reel-1" d="m 17.763265,10.60917 c -1.849868,0 -3.349902,1.500036 -3.349902,3.349902 0,1.849868 1.500034,3.34863 3.349902,3.34863 1.849865,0 3.348629,-1.498762 3.348629,-3.34863 0,-1.849866 -1.498764,-3.349902 -3.348629,-3.349902 z m -8.0539896,5.851215 c -1.849868,0 -3.3499023,1.500032 -3.3499023,3.349898 0,1.849866 1.5000343,3.349897 3.3499023,3.349897 1.8498656,0 3.3498996,-1.500031 3.3498996,-3.349897 0,-1.849866 -1.500034,-3.349898 -3.3498996,-3.349898 z m 16.1016246,0 c -1.849868,0 -3.3499,1.500032 -3.3499,3.349898 0,1.849866 1.500032,3.349897 3.3499,3.349897 1.849865,0 3.348629,-1.500031 3.348629,-3.349897 0,-1.849866 -1.498764,-3.349898 -3.348629,-3.349898 z m -13.023579,9.460259 c -1.849867,0 -3.3498994,1.500032 -3.3498994,3.349902 0,1.849865 1.5000324,3.348629 3.3498994,3.348629 1.849867,0 3.3499,-1.498764 3.3499,-3.348629 0,-1.84987 -1.500033,-3.349902 -3.3499,-3.349902 z m 9.950613,0 c -1.849866,0 -3.348629,1.500032 -3.348629,3.349902 0,1.849865 1.498763,3.348629 3.348629,3.348629 1.849865,0 3.349901,-1.498764 3.349901,-3.348629 0,-1.84987 -1.500036,-3.349902 -3.349901,-3.349902 z">
+                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="2s" begin="0" from="0 17.66 22.74" to="360 17.66 22.74" repeatCount="indefinite" />
+                    </path>
+                    <path id="reel-2" d="m 51.483904,5.8171007 c -1.849872,0 -3.349908,1.5000388 -3.349908,3.3499074 0,1.8498709 1.500036,3.3486359 3.349908,3.3486359 1.849868,0 3.348635,-1.498765 3.348635,-3.3486359 0,-1.8498686 -1.498767,-3.3499074 -3.348635,-3.3499074 z M 43.4299,11.668326 c -1.849872,0 -3.349908,1.500034 -3.349908,3.349904 0,1.849869 1.500036,3.349903 3.349908,3.349903 1.849869,0 3.349906,-1.500034 3.349906,-3.349903 0,-1.84987 -1.500037,-3.349904 -3.349906,-3.349904 z m 16.101654,0 c -1.849871,0 -3.349907,1.500034 -3.349907,3.349904 0,1.849869 1.500036,3.349903 3.349907,3.349903 1.849867,0 3.348635,-1.500034 3.348635,-3.349903 0,-1.84987 -1.498768,-3.349904 -3.348635,-3.349904 z m -13.023602,9.460276 c -1.849871,0 -3.349907,1.500034 -3.349907,3.349908 0,1.849869 1.500036,3.348635 3.349907,3.348635 1.849869,0 3.349905,-1.498766 3.349905,-3.348635 0,-1.849874 -1.500036,-3.349908 -3.349905,-3.349908 z m 9.950632,0 c -1.849872,0 -3.348637,1.500034 -3.348637,3.349908 0,1.849869 1.498765,3.348635 3.348637,3.348635 1.849867,0 3.349905,-1.498766 3.349905,-3.348635 0,-1.849874 -1.500038,-3.349908 -3.349905,-3.349908 z">
+                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="3.6s" begin="0" from="0 51.4 17.7" to="360 51.4 17.7" repeatCount="indefinite" />
+                    </path>
+                </svg>
+            </div>
+            <div class="loading-text-container">
+                <span>Загрузка...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Шаг 3: Контент с плеером (скрыт изначально) -->
+    <div id="main-content" style="display: none;">
+        <!-- Постерный фон - постер яркий, затемнение только на стыке -->
+        <div class="poster-background" id="poster-background">
+            <img src="" alt="Постер фильма" class="poster-image" id="poster-image" onerror="this.src='https://s2.radikal.cloud/2026/01/16/IMG_20260104_150739_03866046bfc08207612.jpg'">
+            <div class="poster-blend-overlay"></div>
+            <div class="poster-smooth-transition"></div>
+        </div>
+
+        <div class="content-wrapper">
+            <!-- Плеер с кнопками внутри -->
+            <div class="player-wrapper">
+                <div class="player-switcher">
+                    <button class="player-btn active" data-player="collaps">Плеер 1</button>
+                    <button class="player-btn" data-player="alloha">Плеер 2</button>
+                    <button class="player-btn" data-player="veoveo">Плеер 3</button>
+                    <button class="player-btn" data-player="turbo">Плеер 4</button>
+                    <button class="player-btn" data-player="videocdn">Плеер 5</button>
+                </div>
+
+                <div class="player-container">
+                    <!-- Рекламный оверлей -->
+                    <div class="ad-overlay" id="ad-overlay">
+                        <img src="https://s2.radikal.cloud/2026/01/18/IMG_20260118_004845_875062556fb943cbbcd.jpg" alt="Реклама" class="ad-image" onerror="this.onerror=null; this.style.display='none'; document.getElementById('ad-overlay').style.backgroundColor='#111';">
+                        <div class="subscribe-badge">Подписаться</div>
+                        <div class="countdown-timer" id="countdown-timer">10</div>
+                        <div class="skip-button" id="skip-button">
+                            <span class="skip-text">Пропустить</span>
+                            <span class="skip-countdown" id="skip-countdown">3</span>
+                        </div>
+                    </div>
+                    
+                    <iframe id="collaps-player" class="player-frame active" 
+                            frameborder="0" allowfullscreen 
+                            allow="autoplay; encrypted-media"></iframe>
+                    <iframe id="alloha-player" class="player-frame" 
+                            frameborder="0" allowfullscreen 
+                            allow="autoplay; encrypted-media"></iframe>
+                    <iframe id="veoveo-player" class="player-frame" 
+                            frameborder="0" allowfullscreen 
+                            allow="autoplay; encrypted-media"></iframe>
+                    <iframe id="turbo-player" class="player-frame" 
+                            frameborder="0" allowfullscreen 
+                            allow="autoplay; encrypted-media"></iframe>
+                    <div id="videocdn-container" class="videocdn-container"></div>
+                </div>
+            </div>
+
+            <div class="movie-title-container">
+                <div class="movie-title" id="movie-title">Загрузка...</div>
+            </div>
+
+            <div class="movie-meta" id="movie-meta"></div>
+
+            <div class="movie-description" id="movie-description">Загрузка описания...</div>
+
+            <!-- БЛОК СИКВЕЛОВ И ПРИКВЕЛОВ -->
+            <div class="sequels-prequels" id="sequels-prequels">
+                <div class="sequels-prequels-title">Сиквелы и приквелы:</div>
+                <div class="sequels-prequels-container">
+                    <div class="sequels-prequels-scroll" id="sequels-prequels-scroll">
+                        <!-- Сиквелы и приквелы будут добавляться сюда динамически -->
+                    </div>
+                    <div class="scroll-track" id="scroll-track">
+                        <div class="scroll-thumb" id="scroll-thumb"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright-footer">
+                <span class="copyright-text">Для правообладателей:</span> 
+                <a href="mailto:copyright@kkpoisk.ru?subject=Вопрос по правам&body=Здравствуйте, пишу по поводу прав на контент." class="copyright-email">copyright@kkpoisk.ru</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Упрощенная и оптимизированная версия
+        const API_CONFIG = {
+            collaps: {
+                token: '43ca406fc21bb2c41b3909543005ddfc',
+                getUrl: (id) => `https://api1650820663.bhcesh.me/franchise/details?token=43ca406fc21bb2c41b3909543005ddfc&kinopoisk_id=${id}`
+            },
+            alloha: {
+                getUrl: (id) => `https://supervision-as.stloadi.live/?token=79e1387cee394b9622b7249a427e78&kp=${id}`
+            },
+            veoveo: {
+                getUrl: (id) => `https://api.rstprgapipt.com/balancer-api/iframe?kp=${id}&token=eyJhbGciOiJIUzI1NiJ9.eyJ3ZWJTaXRlIjoiNTk2IiwiaXNzIjoiYXBpLXdlYm1hc3RlciIsInN1YiI6IjY3MiIsImlhdCI6MTc2OTUyMTU3MywianRpIjoiNmRmNmNhY2MtYjZmNi00MTVmLTgxYTYtOGVkNGEyZGVjMDg1Iiwic2NvcGUiOiJETEUifQ.H_JQbKsau3z-QCwm0FhImhmfmTJ2zuOq1JqWF226k88`
+            },
+            turbo: {
+                getUrl: (id) => `https://5414e3c9.obrut.show/embed/kDN?kinopoisk_id=${id}`
+            },
+            videocdn: {
+                // Для VideoCDN используем специальную обработку
+            },
+            kinopoisk: {
+                apiKey: '04c4f070-1b37-470f-a5f5-56af4461a5ee'
+            }
+        };
+
+        class MoviePlayer {
+            constructor() {
+                this.kpId = null;
+                this.currentPlayer = 'collaps';
+                this.data = {
+                    collaps: null,
+                    sequelsPrequels: []
+                };
+                this.posterLoaded = false;
+                this.sequelsPrequelsLoaded = false;
+                this.scrollThumbInitialized = false;
+                
+                this.init();
+            }
+            
+            init() {
+                this.kpId = this.extractKpIdFromURL();
+                
+                // ПРОВЕРЯЕМ: если на главной странице - показываем инструкцию
+                // если есть ID фильма - загружаем фильм
+                if (this.kpId) {
+                    console.log('Загружаем фильм с ID:', this.kpId);
+                    this.loadMovie();
+                } else {
+                    console.log('Главная страница - показываем инструкцию');
+                    this.showMainMenu();
+                }
+            }
+            
+            extractKpIdFromURL() {
+                const url = window.location.pathname;
+                const path = url.replace(/^\/|\/$/g, '');
+                
+                // Главная страница: "", "/", "index.html" и т.д.
+                if (!path || path === '' || path === 'index.html' || path === 'index') {
+                    return null;
+                }
+                
+                // Фильм: /film/123 или /123
+                if (path.startsWith('film/')) {
+                    const id = path.replace('film/', '');
+                    if (/^\d+$/.test(id)) {
+                        return id;
+                    }
+                } else if (path.startsWith('series/')) {
+                    const id = path.replace('series/', '');
+                    if (/^\d+$/.test(id)) {
+                        return id;
+                    }
+                } else if (/^\d+$/.test(path)) {
+                    return path;
+                }
+                
+                return null;
+            }
+            
+            async loadMovie() {
+                // Сначала скрываем главное меню
+                this.hideMainMenu();
+                // Показываем экран загрузки
+                this.showLoadingScreen();
+                
+                try {
+                    // Загружаем данные из Collaps API
+                    const collapsData = await this.fetchCollapsData();
+                    
+                    this.data.collaps = collapsData;
+                    
+                    this.updateUI();
+                    await this.setupPoster(); // Загружаем постер и ждем загрузки
+                    await this.loadSequelsPrequels(); // Загружаем сиквелы и приквелы
+                    this.startAdManager();
+                    
+                } catch (error) {
+                    console.error('Error loading movie:', error);
+                    this.showError(`Ошибка загрузки: ${error.message}`);
+                }
+            }
+            
+            async fetchCollapsData() {
+                try {
+                    const response = await fetch(API_CONFIG.collaps.getUrl(this.kpId));
+                    if (!response.ok) throw new Error(`Collaps: ${response.status}`);
+                    return await response.json();
+                } catch (error) {
+                    console.warn('Collaps API failed:', error);
+                    return null;
+                }
+            }
+            
+            async loadSequelsPrequels() {
+                try {
+                    console.log('Загружаем сиквелы и приквелы для ID:', this.kpId);
+                    
+                    // Используем API Кинопоиска для получения сиквелов и приквелов
+                    // Новый endpoint: /api/v2.1/films/{id}/sequels_and_prequels
+                    const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.1/films/${this.kpId}/sequels_and_prequels`, {
+                        headers: {
+                            'X-API-KEY': API_CONFIG.kinopoisk.apiKey,
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (!response.ok) {
+                        console.warn('Не удалось загрузить сиквелы и приквелы. Статус:', response.status);
+                        // Прячем блок сиквелов и приквелов
+                        document.getElementById('sequels-prequels').classList.add('hidden');
+                        return;
+                    }
+                    
+                    const data = await response.json();
+                    console.log('Получены сиквелы и приквелы:', data);
+                    
+                    if (data && data.length > 0) {
+                        this.data.sequelsPrequels = data.slice(0, 12); // Берем первые 12
+                        this.renderSequelsPrequels();
+                        // Инициализируем скроллбар после рендеринга
+                        setTimeout(() => this.setupScrollControls(), 100);
+                    } else {
+                        // Если нет сиквелов и приквелов - скрываем блок
+                        document.getElementById('sequels-prequels').classList.add('hidden');
+                    }
+                    
+                    this.sequelsPrequelsLoaded = true;
+                    
+                } catch (error) {
+                    console.warn('Ошибка при загрузке сиквелов и приквелов:', error);
+                    // Скрываем блок при ошибке
+                    document.getElementById('sequels-prequels').classList.add('hidden');
+                }
+            }
+            
+            renderSequelsPrequels() {
+                const container = document.getElementById('sequels-prequels-scroll');
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                this.data.sequelsPrequels.forEach((item, index) => {
+                    const card = this.createSequelPrequelCard(item);
+                    container.appendChild(card);
+                });
+            }
+            
+            createSequelPrequelCard(item) {
+                const card = document.createElement('div');
+                card.className = 'sequel-prequel-card';
+                
+                // Добавляем обработчик клика для перехода к фильму
+                card.addEventListener('click', () => {
+                    window.location.href = `/${item.filmId}`;
+                });
+                
+                // Используем posterUrl из API или генерируем URL
+                const posterUrl = item.posterUrl || 
+                                 `https://kinopoiskapiunofficial.tech/images/posters/kp/${item.filmId}.jpg`;
+                const name = item.nameRu || item.nameEn || item.nameOriginal || 'Фильм';
+                
+                card.innerHTML = `
+                    <div class="sequel-prequel-poster-container">
+                        <img src="${posterUrl}" alt="${name}" class="sequel-prequel-poster" 
+                             onerror="this.src='https://s2.radikal.cloud/2026/01/16/IMG_20260104_150739_03866046bfc08207612.jpg'">
+                    </div>
+                    <div class="sequel-prequel-name">${name}</div>
+                `;
+                
+                return card;
+            }
+            
+            setupScrollControls() {
+                const scrollContainer = document.getElementById('sequels-prequels-scroll');
+                const scrollTrack = document.getElementById('scroll-track');
+                const scrollThumb = document.getElementById('scroll-thumb');
+                
+                if (!scrollContainer || !scrollTrack || !scrollThumb) return;
+                
+                // Скрываем полосу прокрутки, если контента меньше ширины контейнера
+                const hideScrollIfNotNeeded = () => {
+                    const scrollWidth = scrollContainer.scrollWidth;
+                    const clientWidth = scrollContainer.clientWidth;
+                    
+                    if (scrollWidth <= clientWidth) {
+                        scrollTrack.style.display = 'none';
+                        return false;
+                    } else {
+                        scrollTrack.style.display = 'block';
+                        return true;
+                    }
+                };
+                
+                // Обновляем позицию и размер бегунка
+                const updateScrollThumb = () => {
+                    if (!hideScrollIfNotNeeded()) return;
+                    
+                    const scrollWidth = scrollContainer.scrollWidth;
+                    const clientWidth = scrollContainer.clientWidth;
+                    const scrollLeft = scrollContainer.scrollLeft;
+                    
+                    // Максимальный возможный скролл
+                    const maxScrollLeft = scrollWidth - clientWidth;
+                    
+                    if (maxScrollLeft <= 0) {
+                        scrollThumb.style.width = '100%';
+                        scrollThumb.style.transform = 'translateX(0)';
+                        return;
+                    }
+                    
+                    // Пропорция видимой области к общей ширине
+                    const visibleRatio = clientWidth / scrollWidth;
+                    
+                    // Ширина бегунка = пропорция видимой области от ширины трека
+                    const thumbWidth = Math.max(visibleRatio * 100, 10); // Минимум 10%
+                    
+                    // Позиция бегунка пропорциональна текущей прокрутке
+                    // Двигаем бегунок только на оставшееся пространство (100% - ширина бегунка)
+                    const availableSpace = 100 - thumbWidth;
+                    const thumbPosition = (scrollLeft / maxScrollLeft) * availableSpace;
+                    
+                    scrollThumb.style.width = `${thumbWidth}%`;
+                    scrollThumb.style.transform = `translateX(${thumbPosition}%)`;
+                };
+                
+                // Инициализация при загрузке
+                const initScrollThumb = () => {
+                    updateScrollThumb();
+                    this.scrollThumbInitialized = true;
+                };
+                
+                // Обновляем при скролле
+                scrollContainer.addEventListener('scroll', updateScrollThumb);
+                
+                // Обновляем при изменении размера окна
+                window.addEventListener('resize', updateScrollThumb);
+                
+                // Обновляем при изменении содержимого
+                const observer = new MutationObserver(() => {
+                    setTimeout(updateScrollThumb, 100);
+                });
+                observer.observe(scrollContainer, { childList: true, subtree: true });
+                
+                // Добавляем перетаскивание бегунка
+                this.setupThumbDrag(scrollContainer, scrollThumb, updateScrollThumb);
+                
+                // Инициализируем сразу
+                setTimeout(initScrollThumb, 300);
+                
+                // И еще раз после полной загрузки
+                window.addEventListener('load', initScrollThumb);
+            }
+            
+            setupThumbDrag(scrollContainer, scrollThumb, updateCallback) {
+                let isDragging = false;
+                let startX = 0;
+                let startScrollLeft = 0;
+                
+                const startDrag = (e) => {
+                    isDragging = true;
+                    startX = e.clientX || e.touches[0].clientX;
+                    startScrollLeft = scrollContainer.scrollLeft;
+                    e.preventDefault();
+                    
+                    // Добавляем обработчики для перемещения и окончания
+                    document.addEventListener('mousemove', onDrag);
+                    document.addEventListener('touchmove', onDrag);
+                    document.addEventListener('mouseup', stopDrag);
+                    document.addEventListener('touchend', stopDrag);
+                    
+                    // Добавляем класс для визуального эффекта
+                    scrollThumb.style.opacity = '0.9';
+                };
+                
+                const onDrag = (e) => {
+                    if (!isDragging) return;
+                    
+                    const currentX = e.clientX || e.touches[0].clientX;
+                    const deltaX = currentX - startX;
+                    
+                    // Вычисляем новый скролл
+                    const scrollWidth = scrollContainer.scrollWidth;
+                    const clientWidth = scrollContainer.clientWidth;
+                    const maxScrollLeft = scrollWidth - clientWidth;
+                    
+                    if (maxScrollLeft > 0) {
+                        // Преобразуем смещение мыши в смещение скролла
+                        const trackWidth = scrollContainer.clientWidth;
+                        const thumbWidth = scrollThumb.offsetWidth;
+                        const availableTrackWidth = trackWidth - thumbWidth;
+                        
+                        const scrollDelta = (deltaX / availableTrackWidth) * maxScrollLeft;
+                        const newScrollLeft = startScrollLeft + scrollDelta;
+                        
+                        // Ограничиваем скролл
+                        scrollContainer.scrollLeft = Math.max(0, Math.min(maxScrollLeft, newScrollLeft));
+                        
+                        updateCallback();
+                    }
+                };
+                
+                const stopDrag = () => {
+                    isDragging = false;
+                    scrollThumb.style.opacity = '';
+                    
+                    // Убираем обработчики
+                    document.removeEventListener('mousemove', onDrag);
+                    document.removeEventListener('touchmove', onDrag);
+                    document.removeEventListener('mouseup', stopDrag);
+                    document.removeEventListener('touchend', stopDrag);
+                };
+                
+                // Добавляем обработчики для мыши и тача
+                scrollThumb.addEventListener('mousedown', startDrag);
+                scrollThumb.addEventListener('touchstart', startDrag);
+                
+                // Отключаем стандартное поведение для тача
+                scrollThumb.addEventListener('touchstart', (e) => {
+                    if (e.cancelable) e.preventDefault();
+                });
+            }
+            
+            setupPoster() {
+                return new Promise((resolve) => {
+                    const posterImage = document.getElementById('poster-image');
+                    const posterBackground = document.getElementById('poster-background');
+                    
+                    // ПРЯМАЯ ссылка на постер без использования API
+                    const posterUrl = `https://kinopoiskapiunofficial.tech/images/posters/kp/${this.kpId}.jpg`;
+                    
+                    console.log('Загружаем постер по прямой ссылке:', posterUrl);
+                    posterImage.src = posterUrl;
+                    
+                    // Обработчик успешной загрузки
+                    posterImage.onload = () => {
+                        console.log('Постер успешно загружен');
+                        this.posterLoaded = true;
+                        
+                        // Показываем постерный фон с анимацией
+                        if (posterBackground) {
+                            posterBackground.style.display = 'block';
+                            setTimeout(() => {
+                                posterBackground.classList.add('loaded');
+                                // Только после загрузки постера скрываем экран загрузки
+                                this.hideLoadingScreen();
+                                resolve();
+                            }, 100);
+                        } else {
+                            this.hideLoadingScreen();
+                            resolve();
+                        }
+                    };
+                    
+                    // Обработчик ошибки загрузки постера
+                    posterImage.onerror = () => {
+                        console.warn('Ошибка загрузки постера, используем дефолтный');
+                        posterImage.src = 'https://s2.radikal.cloud/2026/01/16/IMG_20260104_150739_03866046bfc08207612.jpg';
+                        
+                        // Показываем постерный фон даже при ошибке
+                        if (posterBackground) {
+                            posterBackground.style.display = 'block';
+                            setTimeout(() => {
+                                posterBackground.classList.add('loaded');
+                                this.hideLoadingScreen();
+                                resolve();
+                            }, 100);
+                        } else {
+                            this.hideLoadingScreen();
+                            resolve();
+                        }
+                    };
+                    
+                    // Таймаут на случай, если постер долго загружается
+                    setTimeout(() => {
+                        if (!this.posterLoaded) {
+                            console.warn('Таймаут загрузки постера, продолжаем без него');
+                            this.hideLoadingScreen();
+                            resolve();
+                        }
+                    }, 5000);
+                });
+            }
+            
+            updateUI() {
+                // Обновляем заголовок
+                const title = this.data.collaps?.name || 'Фильм';
+                document.getElementById('movie-title').textContent = title.toUpperCase();
+                
+                // Обновляем описание
+                const description = this.data.collaps?.description || 'Описание отсутствует';
+                document.getElementById('movie-description').textContent = description;
+                
+                this.updateMetaData();
+                this.setupPlayers();
+                this.setupEventListeners();
+            }
+            
+            updateMetaData() {
+                const metaContainer = document.getElementById('movie-meta');
+                if (!metaContainer) return;
+                
+                metaContainer.innerHTML = '';
+                const metaItems = [];
+                
+                // Год из Collaps данных
+                const year = this.data.collaps?.year;
+                if (year) metaItems.push({type: 'year', value: year});
+                
+                // Рейтинг из Collaps данных
+                const rating = this.data.collaps?.kinopoisk;
+                if (rating && rating !== '0' && rating !== '0.0') {
+                    metaItems.push({type: 'rating', value: rating});
+                }
+                
+                // Возрастное ограничение из Collaps данных
+                const ageLimit = this.data.collaps?.age;
+                const formattedAge = this.formatAge(ageLimit);
+                if (formattedAge) metaItems.push({type: 'age', value: formattedAge});
+                
+                // Длительность из Collaps данных
+                const duration = this.getFormattedDuration();
+                if (duration) metaItems.push({type: 'duration', value: duration});
+                
+                // Отрисовываем элементы
+                metaItems.forEach((item, index) => {
+                    let element;
+                    
+                    if (item.type === 'rating') {
+                        element = document.createElement('div');
+                        element.className = 'rating-container';
+                        element.innerHTML = `
+                            <span class="custom-star"></span>
+                            <span class="rating-value">${item.value}</span>
+                        `;
+                    } else {
+                        element = document.createElement('span');
+                        element.className = 'meta-item';
+                        element.textContent = item.value;
+                    }
+                    
+                    metaContainer.appendChild(element);
+                    
+                    if (index < metaItems.length - 1) {
+                        const separator = document.createElement('span');
+                        separator.className = 'meta-separator';
+                        separator.textContent = '•';
+                        metaContainer.appendChild(separator);
+                    }
+                });
+            }
+            
+            formatAge(ageLimit) {
+                if (!ageLimit) return null;
+                const age = ageLimit.replace(/\D/g, '');
+                return age ? age + '+' : null;
+            }
+            
+            getFormattedDuration() {
+                if (this.data.collaps?.time) {
+                    const match = this.data.collaps.time.match(/(\d+)\s*мин/);
+                    if (match) {
+                        const minutes = parseInt(match[1]);
+                        const hours = Math.floor(minutes / 60);
+                        const mins = minutes % 60;
+                        
+                        if (hours > 0 && mins > 0) return `${hours} ч. ${mins} мин.`;
+                        if (hours > 0) return `${hours} ч.`;
+                        return `${mins} мин.`;
+                    }
+                    return this.data.collaps.time;
+                }
+                return null;
+            }
+            
+            setupPlayers() {
+                const collapsBtn = document.querySelector('[data-player="collaps"]');
+                const allohaBtn = document.querySelector('[data-player="alloha"]');
+                const veoveoBtn = document.querySelector('[data-player="veoveo"]');
+                const turboBtn = document.querySelector('[data-player="turbo"]');
+                const videocdnBtn = document.querySelector('[data-player="videocdn"]');
+                const collapsPlayer = document.getElementById('collaps-player');
+                const allohaPlayer = document.getElementById('alloha-player');
+                const veoveoPlayer = document.getElementById('veoveo-player');
+                const turboPlayer = document.getElementById('turbo-player');
+                const videocdnContainer = document.getElementById('videocdn-container');
+                
+                // Collaps player
+                if (this.data.collaps?.iframe_url) {
+                    collapsPlayer.src = this.data.collaps.iframe_url;
+                    collapsBtn.disabled = false;
+                } else {
+                    collapsBtn.disabled = true;
+                    collapsBtn.classList.remove('active');
+                }
+                
+                // Alloha player (всегда доступен)
+                allohaPlayer.src = API_CONFIG.alloha.getUrl(this.kpId);
+                allohaBtn.disabled = false;
+                
+                // VeoVeo player (всегда доступен)
+                veoveoPlayer.src = API_CONFIG.veoveo.getUrl(this.kpId);
+                veoveoBtn.disabled = false;
+                
+                // Turbo player (всегда доступен)
+                turboPlayer.src = API_CONFIG.turbo.getUrl(this.kpId);
+                turboBtn.disabled = false;
+                
+                // VideoCDN player (всегда доступен)
+                this.setupVideoCDNPlayer();
+                videocdnBtn.disabled = false;
+                
+                // Активируем доступный плеер
+                if (!collapsBtn.disabled) {
+                    this.switchPlayer('collaps');
+                } else {
+                    this.switchPlayer('alloha');
+                }
+            }
+            
+            setupVideoCDNPlayer() {
+                const container = document.getElementById('videocdn-container');
+                if (!container) return;
+                
+                // Создаем элемент видеоплеера для CDNVideoHub
+                const videoPlayer = document.createElement('video-player');
+                videoPlayer.setAttribute('data-publisher-id', '1617');
+                videoPlayer.setAttribute('data-title-id', this.kpId);
+                videoPlayer.setAttribute('data-aggregator', 'kp');
+                videoPlayer.style.width = '100%';
+                videoPlayer.style.height = '100%';
+                videoPlayer.style.backgroundColor = '#000';
+                
+                container.innerHTML = '';
+                container.appendChild(videoPlayer);
+                
+                // Загружаем скрипт CDNVideoHub, если еще не загружен
+                if (!document.querySelector('script[src="https://player.cdnvideohub.com/s2/stable/video-player.umd.js"]')) {
+                    const script = document.createElement('script');
+                    script.src = 'https://player.cdnvideohub.com/s2/stable/video-player.umd.js';
+                    script.async = true;
+                    document.head.appendChild(script);
+                    
+                    script.onload = function() {
+                        console.log('CDNVideoHub player script loaded');
+                    };
+                    
+                    script.onerror = function() {
+                        console.error('Failed to load CDNVideoHub script');
+                    };
+                }
+            }
+            
+            switchPlayer(player) {
+                if (player === this.currentPlayer || !player) return;
+                
+                document.querySelectorAll('.player-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                document.querySelectorAll('.player-frame').forEach(frame => {
+                    frame.classList.remove('active');
+                });
+                
+                document.querySelectorAll('.videocdn-container').forEach(container => {
+                    container.classList.remove('active');
+                });
+                
+                const playerBtn = document.querySelector(`[data-player="${player}"]`);
+                
+                if (playerBtn) playerBtn.classList.add('active');
+                
+                if (player === 'videocdn') {
+                    const videocdnContainer = document.getElementById('videocdn-container');
+                    if (videocdnContainer) videocdnContainer.classList.add('active');
+                } else {
+                    const playerFrame = document.getElementById(`${player}-player`);
+                    if (playerFrame) playerFrame.classList.add('active');
+                }
+                
+                this.currentPlayer = player;
+            }
+            
+            setupEventListeners() {
+                document.querySelectorAll('.player-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        if (!e.target.disabled) {
+                            this.switchPlayer(e.target.dataset.player);
+                        }
+                    });
+                });
+            }
+            
+            startAdManager() {
+                // Инициализируем рекламный менеджер после загрузки контента
+                new AdManager();
+            }
+            
+            // Методы управления экранами
+            hideMainMenu() {
+                const mainMenu = document.getElementById('main-menu');
+                if (mainMenu) mainMenu.style.display = 'none';
+            }
+            
+            showLoadingScreen() {
+                const loadingScreen = document.getElementById('loading-screen');
+                if (loadingScreen) loadingScreen.style.display = 'flex';
+            }
+            
+            hideLoadingScreen() {
+                const loadingScreen = document.getElementById('loading-screen');
+                if (loadingScreen) {
+                    // Добавляем класс для плавного исчезновения
+                    loadingScreen.classList.add('fade-out');
+                    
+                    // Удаляем экран загрузки после анимации
+                    setTimeout(() => {
+                        if (loadingScreen && loadingScreen.parentNode) {
+                            loadingScreen.style.display = 'none';
+                            loadingScreen.classList.remove('fade-out');
+                        }
+                        this.showMainContent();
+                    }, 500);
+                } else {
+                    this.showMainContent();
+                }
+            }
+            
+            showMainContent() {
+                const mainContent = document.getElementById('main-content');
+                if (mainContent) mainContent.style.display = 'block';
+            }
+            
+            showMainMenu() {
+                const mainMenu = document.getElementById('main-menu');
+                if (mainMenu) {
+                    mainMenu.style.display = 'flex';
+                }
+                
+                // Убеждаемся, что всё остальное скрыто
+                const loadingScreen = document.getElementById('loading-screen');
+                if (loadingScreen) loadingScreen.style.display = 'none';
+                
+                const mainContent = document.getElementById('main-content');
+                if (mainContent) mainContent.style.display = 'none';
+                
+                const posterBackground = document.getElementById('poster-background');
+                if (posterBackground) {
+                    posterBackground.style.display = 'none';
+                    posterBackground.classList.remove('loaded');
+                }
+            }
+            
+            showError(message) {
+                this.hideLoadingScreen();
+                
+                const errorContainer = document.createElement('div');
+                errorContainer.id = 'error-container';
+                errorContainer.style.cssText = `
+                    display: flex; 
+                    flex-direction: column; 
+                    align-items: center; 
+                    justify-content: center; 
+                    min-height: 100vh; 
+                    padding: 20px; 
+                    text-align: center; 
+                    background-color: #000;
+                `;
+                
+                errorContainer.innerHTML = `
+                    <div style="margin-bottom: 30px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org" width="171.416" height="200" viewBox="0 0 85.708 100">
+                            <path fill="#ff6600" d="M 51.5625 0 C 50.667739 -0.00962983 49.756943 0.05800477 48.84375 0.1875 C 41.018415 1.2971691 35.117198 7.3376842 33.8125 14.71875 C 30.504071 7.9918491 23.138091 3.8277945 15.3125 4.9375 C 5.573576 6.3185261 -1.1937811 15.321773 0.1875 25.0625 C 1.030765 31.00916 4.7245026 35.850708 9.6875 38.40625 L 10.59375 44.84375 L 41.21875 40.5 C 42.618434 40.301472 43.966737 41.101389 44.15625 42.4375 C 44.34576 43.773612 43.274684 44.957723 41.875 45.15625 L 11.25 49.5 L 12.40625 57.6875 C 12.593105 59.005185 13.837018 59.937079 15.15625 59.75 L 64.25 52.78125 C 65.567815 52.594377 66.499355 51.348937 66.3125 50.03125 L 63.5625 30.78125 C 67.618077 26.946961 69.843395 21.259142 69 15.3125 C 67.748216 6.4849658 60.211858 0.09304631 51.5625 0 z M 51.28125 3.75 C 58.168631 3.6506107 64.22589 8.6859174 65.21875 15.6875 C 66.295328 23.279482 61.029156 30.329715 53.4375 31.40625 C 45.84552 32.482829 38.795329 27.18573 37.71875 19.59375 C 36.641441 11.998855 41.938942 4.9828747 49.53125 3.90625 C 50.124347 3.8221462 50.697574 3.7584222 51.28125 3.75 z M 17.5625 8.53125 C 24.449868 8.4318561 30.507144 13.46718 31.5 20.46875 C 32.576577 28.060719 27.310389 35.110969 19.71875 36.1875 C 12.126783 37.264077 5.0765804 31.966969 4 24.375 C 2.9226914 16.780121 8.2202041 9.7641225 15.8125 8.6875 C 16.405598 8.603395 16.978824 8.5396714 17.5625 8.53125 z M 79.71875 27.46875 L 66.9375 33.65625 L 68.53125 44.8125 L 82.53125 47.21875 L 79.71875 27.46875 z M 41.71875 41.0625 C 41.582761 41.058251 41.422178 41.073761 41.28125 41.09375 L 8.15625 45.78125 L 7.90625 44.09375 L 2.78125 43.9375 L 4 52.53125 L 8.875 50.9375 L 8.625 49.25 L 41.78125 44.5625 C 42.908673 44.40259 43.699053 43.493996 43.5625 42.53125 C 43.443014 41.688847 42.670671 41.092246 41.71875 41.0625 z M 51.53125 57.21875 L 28.625 60.4375 C 28.625117 63.279515 28.625057 61.501735 28.625 64.34375 L 30.90625 64.34375 L 32.40625 64.34375 L 17.21875 97.46875 C 16.804629 98.371268 17.19123 99.429629 18.09375 99.84375 C 18.996268 100.25787 20.054629 99.87127 20.46875 98.96875 L 36.34375 64.34375 L 38.28125 64.34375 L 38.28125 98.21875 C 38.28125 99.211743 39.069507 100 40.0625 100 C 41.055493 100 41.875 99.211743 41.875 98.21875 L 41.875 64.34375 L 43.6875 64.34375 L 59.71875 98.96875 C 60.136118 99.869771 61.192729 100.26112 62.09375 99.84375 C 62.994771 99.426382 63.386118 98.338521 62.96875 97.4375 L 47.65625 64.34375 L 49.09375 64.34375 L 51.53125 64.34375 L 51.53125 57.21875 z " />
+                            <path fill="#ff6600" d="m 17.763265,10.60917 c -1.849868,0 -3.349902,1.500036 -3.349902,3.349902 0,1.849868 1.500034,3.34863 3.349902,3.34863 1.849865,0 3.348629,-1.498762 3.348629,-3.34863 0,-1.849866 -1.498764,-3.349902 -3.348629,-3.349902 z m -8.0539896,5.851215 c -1.849868,0 -3.3499023,1.500032 -3.3499023,3.349898 0,1.849866 1.5000343,3.349897 3.3499023,3.349897 1.8498656,0 3.3498996,-1.500031 3.3498996,-3.349897 0,-1.849866 -1.500034,-3.349898 -3.3498996,-3.349898 z m 16.1016246,0 c -1.849868,0 -3.3499,1.500032 -3.3499,3.349898 0,1.849866 1.500032,3.349897 3.3499,3.349897 1.849865,0 3.348629,-1.500031 3.348629,-3.349897 0,-1.849866 -1.498764,-3.349898 -3.348629,-3.349898 z m -13.023579,9.460259 c -1.849867,0 -3.3498994,1.500032 -3.3498994,3.349902 0,1.849865 1.5000324,3.348629 3.3498994,3.348629 1.849867,0 3.3499,-1.498764 3.3499,-3.348629 0,-1.84987 -1.500033,-3.349902 -3.3499,-3.349902 z m 9.950613,0 c -1.849866,0 -3.348629,1.500032 -3.348629,3.349902 0,1.849865 1.498763,3.348629 3.348629,3.348629 1.849865,0 3.349901,-1.498764 3.349901,-3.348629 0,-1.84987 -1.500036,-3.349902 -3.349901,-3.349902 z"/>
+                            <path fill="#ff6600" d="m 51.483904,5.8171007 c -1.849872,0 -3.349908,1.5000388 -3.349908,3.3499074 0,1.8498709 1.500036,3.3486359 3.349908,3.3486359 1.849868,0 3.348635,-1.498765 3.348635,-3.3486359 0,-1.8498686 -1.498767,-3.3499074 -3.348635,-3.3499074 z M 43.4299,11.668326 c -1.849872,0 -3.349908,1.500034 -3.349908,3.349904 0,1.849869 1.500036,3.349903 3.349908,3.349903 1.849869,0 3.349906,-1.500034 3.349906,-3.349903 0,-1.84987 -1.500037,-3.349904 -3.349906,-3.349904 z m 16.101654,0 c -1.849871,0 -3.349907,1.500034 -3.349907,3.349904 0,1.849869 1.500036,3.349903 3.349907,3.349903 1.849867,0 3.348635,-1.500034 3.348635,-3.349903 0,-1.84987 -1.498768,-3.349904 -3.348635,-3.349904 z m -13.023602,9.460276 c -1.849871,0 -3.349907,1.500034 -3.349907,3.349908 0,1.849869 1.500036,3.348635 3.349907,3.348635 1.849869,0 3.349905,-1.498766 3.349905,-3.348635 0,-1.849874 -1.500036,-3.349908 -3.349905,-3.349908 z m 9.950632,0 c -1.849872,0 -3.348637,1.500034 -3.348637,3.349908 0,1.849869 1.498765,3.348635 3.348637,3.348635 1.849867,0 3.349905,-1.498766 3.349905,-3.348635 0,-1.849874 -1.500038,-3.349908 -3.349905,-3.349908 z"/>
+                        </svg>
+                    </div>
+                    <div style="color: #ff6600; font-size: 48px; margin-bottom: 20px; font-weight: 900;">
+                        Ошибка
+                    </div>
+                    <div style="color: #ccc; margin-bottom: 30px; font-size: 32px; line-height: 1.5; font-weight: 500; max-width: 600px;">
+                        ${message}
+                    </div>
+                    <button onclick="window.location.href='javascript:location.reload()'" style="background-color: #ff6600; color: white; border: none; padding: 24px 60px; font-size: 32px; border-radius: 50px; cursor: pointer; font-weight: 700;">
+                        Обновить страницу
+                    </button>
+                `;
+                
+                document.body.appendChild(errorContainer);
+            }
+        }
+
+        class AdManager {
+            constructor() {
+                this.adOverlay = document.getElementById('ad-overlay');
+                this.countdownTimer = document.getElementById('countdown-timer');
+                this.skipButton = document.getElementById('skip-button');
+                this.skipCountdown = document.getElementById('skip-countdown');
+                
+                this.mainCountdown = 10;
+                this.skipCountdownValue = 3;
+                this.mainTimer = null;
+                this.skipTimer = null;
+                this.isAdHidden = false;
+                
+                this.init();
+            }
+            
+            init() {
+                if (!this.adOverlay) {
+                    console.warn('Рекламный оверлей не найден, показываем плеер сразу');
+                    this.skipAdScreen();
+                    return;
+                }
+                
+                // Показываем рекламный оверлей сразу
+                this.adOverlay.style.display = 'block';
+                
+                // Запускаем таймеры сразу (не ждем загрузки изображения)
+                this.startTimers();
+                
+                // Клик по рекламе открывает телеграм канал
+                this.adOverlay.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('.skip-button') || 
+                        e.target.closest('.skip-button')) {
+                        return;
+                    }
+                    window.open('https://t.me/kkpoisk_channel', '_blank');
+                });
+                
+                // Обработчик кнопки пропуска
+                this.skipButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.hideAd();
+                });
+            }
+            
+            startTimers() {
+                // Основной таймер (10 секунд)
+                this.mainTimer = setInterval(() => {
+                    this.mainCountdown--;
+                    if (this.countdownTimer) {
+                        this.countdownTimer.textContent = this.mainCountdown;
+                    }
+                    
+                    if (this.mainCountdown <= 0) {
+                        clearInterval(this.mainTimer);
+                        this.hideAd();
+                    }
+                }, 1000);
+                
+                // Таймер для кнопки пропуска (3 секунды)
+                this.skipTimer = setInterval(() => {
+                    this.skipCountdownValue--;
+                    if (this.skipCountdown) {
+                        this.skipCountdown.textContent = this.skipCountdownValue;
+                    }
+                    
+                    if (this.skipCountdownValue <= 0) {
+                        clearInterval(this.skipTimer);
+                        this.activateSkipButton();
+                    }
+                }, 1000);
+            }
+            
+            activateSkipButton() {
+                if (this.skipButton) {
+                    this.skipButton.classList.add('active');
+                }
+            }
+            
+            hideAd() {
+                if (this.isAdHidden) return;
+                
+                this.isAdHidden = true;
+                clearInterval(this.mainTimer);
+                clearInterval(this.skipTimer);
+                
+                if (this.adOverlay) {
+                    this.adOverlay.classList.add('fade-out');
+                    
+                    setTimeout(() => {
+                        if (this.adOverlay && this.adOverlay.parentNode) {
+                            this.adOverlay.remove();
+                        }
+                    }, 500);
+                }
+            }
+            
+            skipAdScreen() {
+                if (this.adOverlay && this.adOverlay.parentNode) {
+                    this.adOverlay.remove();
+                }
+            }
+        }
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            window.moviePlayer = new MoviePlayer();
+        });
+    </script>
+</body>
+</html>
